@@ -9,11 +9,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,15 +47,21 @@ class MainActivity : ComponentActivity() {
 
         Scaffold(
             bottomBar = {
-                BottomNavigation {
+                BottomNavigation(
+                    backgroundColor = Color(0xFFD0BCFF)
+                ) {
                     BottomDestinationa.forEach { destination ->
                         BottomNavigationItem(
                             selected = destination.route == currentDestinations?.route,
-                            label = {
-                                    Text(text = stringResource(destination.titleRes))
-                            },
                             icon = {
-                                destination.iconAsset },
+                                Icon(imageVector = destination.icon, contentDescription = "")
+
+                            },
+                            alwaysShowLabel = false,
+                            label = {
+                                Text(text = stringResource(destination.titleRes))
+                            },
+
                             onClick = {
                                 navController.navigate(destination.route) {
                                     // Pop up to the start destination of the graph to
@@ -70,7 +78,8 @@ class MainActivity : ComponentActivity() {
                                 }
 
 
-                                      },)
+                            },
+                        )
                     }
 
                 }
@@ -78,20 +87,16 @@ class MainActivity : ComponentActivity() {
             }
         ) {padding ->
             NavHost(navController = navController,
-                startDestination = MainBottomDestinations.Overview.route,
+                startDestination = MainBottomDestinations.Home.route,
                 modifier = Modifier.padding(padding)) {
 
-                composable(MainBottomDestinations.Overview.route) {}
+                composable(MainBottomDestinations.Home.route) {}
                 composable(MainBottomDestinations.Map.route) {}
                 composable(MainBottomDestinations.ChatBox.route) {}
                 composable(MainBottomDestinations.Profile.route) {}
 
-
             }
-
         }
-
-
     }
 }
 

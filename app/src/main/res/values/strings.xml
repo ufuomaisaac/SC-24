@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MotherCare</string>
-    <string name="overview">Overview</string>
+    <string name="home">Home</string>
     <string name="map_screen">Map</string>
     <string name="chat_screen">ChatAI</string>
     <string name="profile">Profile</string>
