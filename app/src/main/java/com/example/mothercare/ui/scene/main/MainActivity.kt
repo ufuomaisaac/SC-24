@@ -27,6 +27,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
+import com.example.mothercare.ui.scene.auth.signin.Email
 
 class MainActivity : ComponentActivity() {
 
@@ -36,7 +37,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MotherCareTheme {
                 MainScreen()
-
             }
         }
     }
@@ -77,21 +77,19 @@ class MainActivity : ComponentActivity() {
                                     // Restore state when reselecting a previously selected item
                                     restoreState = true
                                 }
-
-
                             },
                         )
                     }
-
                 }
-
             }
         ) {padding ->
             NavHost(navController = navController,
                 startDestination = MainBottomDestinations.Home.route,
                 modifier = Modifier.padding(padding)) {
 
-                composable(MainBottomDestinations.Home.route) {}
+                composable(MainBottomDestinations.Home.route) {
+                    //Email()
+                }
                 composable(MainBottomDestinations.Map.route) {}
                 composable(MainBottomDestinations.ChatBox.route) {}
                 composable(MainBottomDestinations.Profile.route) {}

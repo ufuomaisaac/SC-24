@@ -25,15 +25,12 @@ fun OnEntryNavigatiion(
         startDestination = Destinations.SIGN_UP_ROUTE) {
 
         composable(route = SIGN_UP_ROUTE) {
-
         }
 
         composable(route = SIGN_IN_ROUTE) {
-
         }
 
         composable(route = SURVEY_ROUTE) {
-
         }
 
         composable(route = SURVEY_RESULTS_ROUTE) {

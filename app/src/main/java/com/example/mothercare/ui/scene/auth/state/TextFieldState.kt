@@ -33,7 +33,6 @@ open class TextFieldState(
 
     fun showErrors() = !isValid && displayErrors
 
-
     open fun getError(): String? {
         return if (showErrors()) {
             errorFor(text)

@@ -11,6 +11,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -19,9 +21,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.ImeOptions
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Typography
 import com.example.mothercare.ui.scene.auth.state.EmailState
+import com.example.mothercare.ui.scene.auth.state.PasswordState
 import com.example.mothercare.ui.scene.auth.state.TextFieldState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,11 +57,10 @@ fun SignInSIgnUpAppBar(
             }
         }
     )
-    
 }
 
 @Composable
-fun email(
+fun Email(
     emailState: TextFieldState =  remember {EmailState()},
     imeAction: ImeAction = ImeAction.Next,
     onImeAction: () -> Unit = {}
@@ -94,6 +99,55 @@ fun email(
     emailState.getError()?.let { error -> TextFieldError(textError = error) }
 }
 
+
+@Composable
+fun Password(
+    label: String,
+    passwordState: TextFieldState,
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Done,
+    onImeAction: () -> Unit = {}
+) {
+
+    val showPassword = rememberSaveable { mutableStateOf(false) }
+
+    OutlinedTextField(value = passwordState.text,
+        onValueChange = {
+            passwordState.text = it
+            passwordState.enableShowErrors()
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .onFocusChanged { focusState ->
+                passwordState.onFocusChange(focusState.isFocused)
+                if (!focusState.isFocused) {
+                    passwordState.enableShowErrors()
+                }
+            },
+        textStyle = MaterialTheme.typography.bodyMedium,
+        label = {
+            Text(text = label,
+                style = MaterialTheme.typography.bodyMedium)
+        },
+        trailingIcon = {
+            if (showPassword.value) {
+                IconButton(onClick = { showPassword.value = false }) {
+                    Icon(
+                        imageVector = Icons.Filled.Visibility,
+                        contentDescription = "hide password"
+                    )
+                }
+            } else {
+                IconButton(onClick = { showPassword.value = true }) {
+                    Icon(
+                        imageVector = Icons.Filled.VisibilityOff,
+                        contentDescription = "show password")
+                }
+            }
+        }
+    )
+
+}
 /**
  * To be removed when [TextField]s support error
  */
@@ -114,7 +168,7 @@ fun TextFieldError(textError: String) {
 fun SignInPreview() {
     MotherCareTheme {
         Surface {
-            email()
+            Password(label = "password", passwordState = PasswordState())
         }
     }
 }

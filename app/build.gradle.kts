@@ -70,6 +70,12 @@ dependencies {
     //Navigation
     val nav_version = "2.7.6"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
     //BottomNavigation and BottomNavigationItem
     implementation("androidx.compose.material:material:1.5.4")
+
+    //icons
+    implementation("androidx.compose.material:material-icons-extended:1.5.3")
+
+
 }
