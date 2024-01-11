@@ -25,4 +25,4 @@ fun emailValidationError(email : String): String {
     return "Invalid email $email"
 }
 
-//val EmailStateSaver = textFieldStateSaver(EmailState())
+val EmailStateSaver = textFieldStateSaver(EmailState())
