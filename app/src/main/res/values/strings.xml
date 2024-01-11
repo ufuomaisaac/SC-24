@@ -5,4 +5,11 @@
     <string name="chat_screen">ChatAI</string>
     <string name="profile">Profile</string>
     <string name="welcome_screen_question">Signin or create an account</string>
+
+    <string name="terms_and_conditions">By continuing, you agree to our Terms of Service. We’ll
+        handle your data according to our Privacy Policy.</string>
+
+
+
+
 </resources>

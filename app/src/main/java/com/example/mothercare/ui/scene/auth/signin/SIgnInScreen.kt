@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signin
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import android.service.autofill.OnClickAction
 import androidx.compose.foundation.layout.Arrangement
@@ -47,8 +48,11 @@ import androidx.compose.ui.text.input.ImeOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Typography
+import com.example.mothercare.theme.stronglyDeemphasizedAlpha
+import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
@@ -113,7 +117,6 @@ fun SignInContent(
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
 
-
         val focusRequester = remember { FocusRequester() }
         val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
             mutableStateOf(EmailState(email))
@@ -146,6 +149,56 @@ fun SignInContent(
 }
 
 
+@Composable
+fun SignUpContent(
+    modifier: Modifier = Modifier,
+    email: String = " ",
+    onSignUpSubmitted: (email: String, password: String) -> Unit
+) {
+    val passwordFocusRequest = remember { FocusRequester() }
+    val confirmationPasswordFocusRequest = remember { FocusRequester() }
+
+    val emailState = remember { EmailState(email) }
+    val passwordState = remember { PasswordState() }
+    val confirmPasswordState = remember { ConfirmPasswordState(passwordState = passwordState) }
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+
+        Email(emailState, onImeAction = { passwordFocusRequest.requestFocus() })
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Password(label = "password",
+            passwordState = passwordState,
+            modifier = Modifier.focusRequester(passwordFocusRequest))
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Password(label = "confirm password",
+            passwordState = confirmPasswordState,
+            modifier = Modifier.focusRequester(confirmationPasswordFocusRequest))
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = stringResource(id = R.string.terms_and_conditions),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha))
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                onSignUpSubmitted
+            },
+            enabled = emailState.isValid &&
+                    passwordState.isValid &&
+                    confirmPasswordState.isValid) {
+
+            Text(text = "Create Account")
+
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -319,7 +372,21 @@ fun ForgetPasswordPreview() {
     MotherCareTheme {
         Surface {
             ForgetPassword(modifier = Modifier) {
+
             }
+        }
+    }
+}
+
+@Preview()
+@Composable
+fun SignUpPreview() {
+    MotherCareTheme {
+        Surface {
+            SignUpContent(
+                modifier = Modifier,
+                email = "ejemudaro",
+                onSignUpSubmitted = {_, _ -> })
         }
     }
 }

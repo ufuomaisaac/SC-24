@@ -10,6 +10,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+const val stronglyDeemphasizedAlpha = 0.6f
+const val slightlyDeemphasizedAlpha = 0.87f
+
 private val DarkColorScheme = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
