@@ -21,50 +21,5 @@ import com.example.mothercare.R
 import com.example.mothercare.theme.Typography
 import org.w3c.dom.Text
 
-@Composable
-fun LoginScreen(modifier: Modifier) {
-
-
-}
-
-@Composable
-fun Header(title: String, modifier: Modifier) {
-    Column() {
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "logo")
-
-        Text(text = title,
-            style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Center)
-    }
-}
-
-@Composable
-private fun SignIn(
-    onSignButtonClicked: (email: String) -> Unit,
-    onCreateAccountButtonCLicked: () -> Unit,
-) {
-    
-    Column {
-        Text(
-            text = stringResource(id = R.string.welcome_screen_question),
-            style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 64.dp, bottom = 16.dp))
-
-    }
-}
-
-@Composable
-fun UserInput(
-    userInput: MutableState<String> = rememberSaveable{
-        mutableStateOf("")
-    },
-    onUserInputChanged: (String) -> Unit
-)   {
-
-    //OutlinedTextField(value = userInput, onValueChange = {})
-}
 
 
