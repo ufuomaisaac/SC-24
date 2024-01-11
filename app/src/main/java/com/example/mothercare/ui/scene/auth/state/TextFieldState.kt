@@ -9,7 +9,7 @@ open class TextFieldState(
     private val validator: (String) -> Boolean = {true},
     private val errorFor: (String) -> String = {" "}
 ) {
-    var text: String by mutableStateOf(" ")
+    var text: String by mutableStateOf("")
 
     var isFocusedDirty: Boolean by mutableStateOf(false)
     var isFocused: Boolean by mutableStateOf(false)

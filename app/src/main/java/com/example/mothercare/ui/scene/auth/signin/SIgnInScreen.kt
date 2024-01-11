@@ -46,6 +46,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.ImeOptions
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mothercare.R
@@ -141,18 +143,48 @@ fun SignInContent(
         }},
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp)
+                .padding(top = 32.dp),
+            enabled = emailState.isValid && passwordState.isValid
         ) {
             Text(text = "Sign In")
         }
     }
 }
 
+@Composable
+fun SignUpScreen(
+    modifier: Modifier,
+    email: String = " ",
+    onSignUpSubmitted: (email: String, password: String) -> Unit,
+    NavUp: () -> Unit ) {
+
+    Scaffold(
+        topBar = {
+            TopAppBar(topAppBarTitle = "Create Account") {
+        }},
+        content = { paddingValues ->
+
+            Spacer(modifier = Modifier.padding(top = 16.dp))
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(all = 16.dp)) {
+                SignUpContent(
+                    email = email,
+                    onSignUpSubmitted = onSignUpSubmitted
+                    )
+
+
+            }
+        }
+    )
+}
+
 
 @Composable
 fun SignUpContent(
     modifier: Modifier = Modifier,
-    email: String = " ",
+    email: String = "",
     onSignUpSubmitted: (email: String, password: String) -> Unit
 ) {
     val passwordFocusRequest = remember { FocusRequester() }
@@ -178,7 +210,7 @@ fun SignUpContent(
             passwordState = confirmPasswordState,
             modifier = Modifier.focusRequester(confirmationPasswordFocusRequest))
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Text(text = stringResource(id = R.string.terms_and_conditions),
             style = MaterialTheme.typography.bodySmall,
@@ -306,7 +338,14 @@ fun Password(
                         contentDescription = "show password")
                 }
             }
-        }
+        },
+        visualTransformation = if (showPassword.value) {
+            VisualTransformation.None
+        } else {
+            PasswordVisualTransformation()
+        },
+        isError = passwordState.showErrors(),
+
     )
 
 }
@@ -326,8 +365,9 @@ fun TextFieldError(textError: String) {
 }
 
 @Composable
-fun ForgetPassword(modifier: Modifier,
-                   onForgotPasswordClicked: () -> Unit) {
+fun ForgetPassword(
+    modifier: Modifier,
+    onForgotPasswordClicked: () -> Unit) {
 
     TextButton(
         onClick = {
@@ -340,12 +380,13 @@ fun ForgetPassword(modifier: Modifier,
     }
 }
 
+
 @Preview()
 @Composable
 fun SignInContentPreview() {
     MotherCareTheme {
         Surface {
-            SignInContent(email = "ejemudaroufuoma",
+            SignInContent(email = "",
                 onSignInSubmitted = {_, _ -> } )
         }
     }
@@ -380,14 +421,22 @@ fun ForgetPasswordPreview() {
 
 @Preview()
 @Composable
-fun SignUpPreview() {
+fun SignUpContentPreview() {
     MotherCareTheme {
         Surface {
             SignUpContent(
                 modifier = Modifier,
-                email = "ejemudaro",
+                email = "",
                 onSignUpSubmitted = {_, _ -> })
         }
     }
 }
 
+@Preview
+@Composable
+fun SignUpPreview() {
+    SignUpScreen(
+        modifier = Modifier,
+        onSignUpSubmitted = {_, _ -> }) {
+    }
+}
