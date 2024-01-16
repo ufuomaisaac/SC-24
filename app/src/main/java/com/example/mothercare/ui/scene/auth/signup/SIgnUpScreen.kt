@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signup
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +33,7 @@ import com.example.mothercare.ui.scene.auth.state.PasswordState
 fun SignUpScreen(
     modifier: Modifier,
     email: String = "",
-    onSignUpSubmitted: (email: String, password: String) -> Unit,
+    onSignUpSubmitted: () -> Unit,
     NavUp: () -> Unit ) {
 
     Scaffold(
@@ -49,8 +50,6 @@ fun SignUpScreen(
                     email = email,
                     onSignUpSubmitted = onSignUpSubmitted
                 )
-
-
             }
         }
     )
@@ -61,7 +60,7 @@ fun SignUpScreen(
 fun SignUpContent(
     modifier: Modifier = Modifier,
     email: String = "",
-    onSignUpSubmitted: (email: String, password: String) -> Unit
+    onSignUpSubmitted: () -> Unit
 ) {
     val passwordFocusRequest = remember { FocusRequester() }
     val confirmationPasswordFocusRequest = remember { FocusRequester() }
@@ -95,9 +94,9 @@ fun SignUpContent(
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = {
-                onSignUpSubmitted
-            },
+            onClick = onSignUpSubmitted
+
+            ,
             enabled = emailState.isValid &&
                     passwordState.isValid &&
                     confirmPasswordState.isValid) {
@@ -115,7 +114,7 @@ fun SignInPreview() {
         Surface {
             SignUpScreen(
                 modifier = Modifier ,
-                onSignUpSubmitted = {_, _ -> }) {
+                onSignUpSubmitted = { }) {
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signin
 
+import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -51,7 +52,7 @@ fun SignInTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { NavUp}) {
+            IconButton(onClick = NavUp) {
 
                 Icon(imageVector = Icons.Filled.KeyboardArrowLeft,
                     contentDescription = "navigation icon")
