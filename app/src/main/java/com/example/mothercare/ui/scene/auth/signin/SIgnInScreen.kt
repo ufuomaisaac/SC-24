@@ -39,6 +39,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +64,7 @@ import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
 import com.example.mothercare.ui.scene.auth.state.TextFieldState
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignInScreen(
@@ -72,6 +74,11 @@ fun SignInScreen(
     onNavUp: () -> Unit,
     modifier: Modifier
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    val snackbarErrorText = stringResource(id = R.string.feature_not_available)
+    val snackbarActionLabel = stringResource(id = R.string.dismiss)
     Scaffold(
         topBar = {
             SignInTopAppBar(topAppBarTitle = "SignIn", NavUp = onNavUp)
@@ -108,10 +115,26 @@ fun SignInScreen(
                  }
                  ForgetPassword(
                      modifier = Modifier,
-                     onForgotPasswordClicked = onForgotPasswordClicked)
+                     onForgotPasswordClicked = {/*
+                         scope.launch {
+                             snackbarHostState.showSnackbar(
+                                 message = snackbarErrorText,
+                                 actionLabel = snackbarActionLabel
+                             )
+                         }*/
+                     })
              }
              Spacer(modifier = Modifier.height(32.dp))
          })
+
+    /*Box(modifier = Modifier.fillMaxSize()) {
+        ErrorSnackbar(
+            snackbarHostState = snackbarHostState,
+            onDismiss = { snackbarHostState.currentSnackbarData?.dismiss() },
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
+    }*/
+
 
 }
 
