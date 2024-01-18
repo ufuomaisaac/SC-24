@@ -2,6 +2,10 @@ package com.example.mothercare.ui.scene.main
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
@@ -22,24 +26,24 @@ sealed class MainBottomDestinations(
     object Home: MainBottomDestinations(
         route = "overview",
         titleRes = R.string.home,
-        icon = Icons.Outlined.Home
+        icon = Icons.Filled.Home
     )
 
     object Map: MainBottomDestinations(
         route = "map",
         titleRes = R.string.map_screen,
-        icon = Icons.Outlined.LocationOn
+        icon = Icons.Filled.LocationOn
     )
 
     object ChatBox: MainBottomDestinations(
         route = "chatbox",
         R.string.chat_screen,
-        icon = Icons.Outlined.List)
+        icon = Icons.Filled.List)
 
     object Profile: MainBottomDestinations(
         route = "profile",
         R.string.profile,
-        icon = Icons.Outlined.AccountCircle
+        icon = Icons.Filled.AccountCircle
     )
 }
 

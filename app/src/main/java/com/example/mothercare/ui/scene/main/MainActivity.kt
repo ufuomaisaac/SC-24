@@ -54,7 +54,7 @@ fun MainScreen() {
     Scaffold(
         bottomBar = {
             BottomNavigation(
-                backgroundColor = Color(0xFFD0BCFF)
+                backgroundColor = Color.DarkGray
             ) {
                 BottomDestinationa.forEach { destination ->
                     BottomNavigationItem(
@@ -65,7 +65,8 @@ fun MainScreen() {
                         },
                         alwaysShowLabel = false,
                         label = {
-                            Text(text = stringResource(destination.titleRes))
+                            Text(text = stringResource(destination.titleRes),
+                                color = Color.White)
                         },
 
                         onClick = {

@@ -206,6 +206,7 @@ fun ForgetPasswordPreview() {
 fun SignUpContentPreview() {
     MotherCareTheme {
         Surface {
+            SignInScreen(onSignInSubmitted = {_, _ -> }, onNavUp = { /*TODO*/ }, modifier = Modifier)
 
         }
     }
