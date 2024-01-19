@@ -19,9 +19,11 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
+import com.example.mothercare.ui.scene.auth.SignInViewModel
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
@@ -35,6 +37,8 @@ fun SignUpScreen(
     email: String = "",
     onSignUpSubmitted: () -> Unit,
     NavUp: () -> Unit ) {
+
+
 
     Scaffold(
         topBar = {
@@ -69,6 +73,9 @@ fun SignUpContent(
     val passwordState = remember { PasswordState() }
     val confirmPasswordState = remember { ConfirmPasswordState(passwordState = passwordState) }
 
+
+    val viewModel = viewModel<SignInViewModel>()
+
     Column(modifier = Modifier.fillMaxWidth()) {
 
         Email(emailState, onImeAction = { passwordFocusRequest.requestFocus() })
@@ -95,6 +102,7 @@ fun SignUpContent(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = onSignUpSubmitted
+            //onClick = { emailState.email?.let { viewModel.signIn(email = it, password = passwordState.text) } }
 
             ,
             enabled = emailState.isValid &&

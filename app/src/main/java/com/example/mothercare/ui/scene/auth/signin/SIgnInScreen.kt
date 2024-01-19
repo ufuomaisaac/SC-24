@@ -155,7 +155,7 @@ fun SignInContent(
         Email(emailState)
 
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Password(
             label = "password",
             passwordState = passwordState,
@@ -163,7 +163,7 @@ fun SignInContent(
             )
 
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Button(
             onClick = { if (emailState.isValid && passwordState.isValid) {
             onSignInSubmitted(emailState.text, passwordState.text)
@@ -212,8 +212,6 @@ fun ErrorSnackbar(
             .wrapContentHeight(Alignment.Bottom)
     )
 }
-
-
 
 
 /*
