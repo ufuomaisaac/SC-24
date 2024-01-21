@@ -11,13 +11,13 @@ class MyApp: Application() {
     var TAG = "MYNEWAPP"
 
     companion object {
-        lateinit var auth: FirebaseAuth
+        lateinit var firebaseAuth: FirebaseAuth
     }
 
 
     override fun onCreate() {
         super.onCreate()
-        auth = Firebase.auth
+        firebaseAuth = Firebase.auth
         Log.d(TAG, "signInWithEmail:success MYAPP")
     }
 }

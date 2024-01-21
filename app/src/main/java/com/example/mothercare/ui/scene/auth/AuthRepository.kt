@@ -3,7 +3,7 @@ package com.example.mothercare.ui.scene.auth
 import android.util.Log
 import android.widget.Toast
 import com.example.mothercare.MyApp
-import com.example.mothercare.MyApp.Companion.auth
+//import com.example.mothercare.MyApp.Companion.auth
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthRepository(

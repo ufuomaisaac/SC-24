@@ -55,6 +55,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Typography
@@ -152,6 +153,8 @@ fun SignInContent(
         }
         val passwordState = remember { PasswordState() }
 
+        val scope = rememberCoroutineScope()
+
         Email(emailState)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -165,7 +168,9 @@ fun SignInContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { if (emailState.isValid && passwordState.isValid) {
+            onClick = {
+                if (emailState.isValid && passwordState.isValid) {
+
             onSignInSubmitted(emailState.text, passwordState.text)
         }},
             modifier = Modifier

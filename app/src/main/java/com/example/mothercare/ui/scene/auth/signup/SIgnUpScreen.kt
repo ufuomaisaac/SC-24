@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -20,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
@@ -30,6 +32,7 @@ import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
 import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.PasswordState
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScreen(
@@ -73,6 +76,8 @@ fun SignUpContent(
     val passwordState = remember { PasswordState() }
     val confirmPasswordState = remember { ConfirmPasswordState(passwordState = passwordState) }
 
+    val scope = rememberCoroutineScope()
+
 
     val viewModel = viewModel<SignInViewModel>()
 
@@ -101,7 +106,23 @@ fun SignUpContent(
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = onSignUpSubmitted
+            onClick = {
+                    scope.launch {
+                        val result = MyApp.firebaseAuth
+                            .createUserWithEmailAndPassword(emailState.text, passwordState.text )
+                            .addOnCompleteListener { task ->
+                                if(task.isSuccessful){
+
+                                    onSignUpSubmitted
+
+                                    //onSignInSubmitted(emailState.text, passwordState.text)
+                                } else {
+                                    print("firebase authetication didnt work")
+
+                                }
+                            }
+                    }
+            }
             //onClick = { emailState.email?.let { viewModel.signIn(email = it, password = passwordState.text) } }
 
             ,
