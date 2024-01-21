@@ -114,9 +114,10 @@ fun SignInScreen(
                      Spacer(modifier = Modifier.height(16.dp))
                  }*/
                  }
-                 ForgetPassword(
+                 TextButton(
                      modifier = Modifier,
-                     onForgotPasswordClicked = {/*
+                     buttonText = "Forgot password?",
+                     onButtonClicked = {/*
                          scope.launch {
                              snackbarHostState.showSnackbar(
                                  message = snackbarErrorText,

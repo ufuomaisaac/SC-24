@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -29,6 +30,7 @@ import com.example.mothercare.ui.scene.auth.SignInViewModel
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
+import com.example.mothercare.ui.scene.auth.signin.TextButton
 import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.PasswordState
@@ -81,7 +83,8 @@ fun SignUpContent(
 
     val viewModel = viewModel<SignInViewModel>()
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally) {
 
         Email(emailState, onImeAction = { passwordFocusRequest.requestFocus() })
 
@@ -113,26 +116,28 @@ fun SignUpContent(
                             .addOnCompleteListener { task ->
                                 if(task.isSuccessful){
 
+                                    //navigation not working
                                     onSignUpSubmitted
 
-                                    //onSignInSubmitted(emailState.text, passwordState.text)
                                 } else {
                                     print("firebase authetication didnt work")
-
                                 }
                             }
                     }
-            }
-            //onClick = { emailState.email?.let { viewModel.signIn(email = it, password = passwordState.text) } }
-
-            ,
+            },
             enabled = emailState.isValid &&
                     passwordState.isValid &&
                     confirmPasswordState.isValid) {
 
             Text(text = "Create Account")
-
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextButton(
+            modifier = Modifier,
+            buttonText = "Sign In",
+            onButtonClicked = onSignUpSubmitted)
     }
 }
 

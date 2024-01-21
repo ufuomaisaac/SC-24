@@ -173,17 +173,16 @@ fun TextFieldError(textError: String) {
 }
 
 @Composable
-fun ForgetPassword(
-    modifier: Modifier,
-    onForgotPasswordClicked: () -> Unit) {
+fun TextButton(
+    modifier: Modifier = Modifier,
+    onButtonClicked: () -> Unit,
+    buttonText: String) {
 
     TextButton(
-        onClick = {
-            onForgotPasswordClicked
-        },
+        onClick = onButtonClicked,
     ) {
         Text(
-            text = "Forgot password?",
+            text = buttonText,
             color = Color.Black)
     }
 }
@@ -194,9 +193,9 @@ fun ForgetPassword(
 fun ForgetPasswordPreview() {
     MotherCareTheme {
         Surface {
-            ForgetPassword(modifier = Modifier) {
-
-            }
+            TextButton(modifier = Modifier,
+                onButtonClicked = {},
+                buttonText = "Forgot password?")
         }
     }
 }
