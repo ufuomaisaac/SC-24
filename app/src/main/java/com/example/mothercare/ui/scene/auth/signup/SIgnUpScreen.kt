@@ -124,6 +124,9 @@ fun SignUpContent(
                                 }
                             }
                     }
+                if(true) {
+                    onSignUpSubmitted
+                }
             },
             enabled = emailState.isValid &&
                     passwordState.isValid &&

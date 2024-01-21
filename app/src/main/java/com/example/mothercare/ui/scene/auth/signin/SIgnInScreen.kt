@@ -3,6 +3,7 @@ package com.example.mothercare.ui.scene.auth.signin
 import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import android.service.autofill.OnClickAction
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -172,8 +173,22 @@ fun SignInContent(
             onClick = {
                 if (emailState.isValid && passwordState.isValid) {
 
-            onSignInSubmitted(emailState.text, passwordState.text)
-        }},
+                     MyApp.firebaseAuth
+                        .signInWithEmailAndPassword(emailState.text, passwordState.text)
+                        .addOnCompleteListener{ task ->
+
+                            //onSignInSubmitted( emailState.text, passwordState.text)
+
+                           if (task.isSuccessful) {
+                                onSignInSubmitted( emailState.text, passwordState.text)
+                                Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                            } else {
+                                Log.d("MYNEWAPP", "Else Block, no user signed in ")
+                            }
+                        }
+                }
+
+                      },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 32.dp),
