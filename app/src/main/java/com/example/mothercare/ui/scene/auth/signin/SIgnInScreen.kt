@@ -37,6 +37,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -61,11 +62,13 @@ import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Typography
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
+import com.example.mothercare.ui.scene.auth.AuthRepository
 import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
 import com.example.mothercare.ui.scene.auth.state.TextFieldState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -154,8 +157,10 @@ fun SignInContent(
             mutableStateOf(EmailState(email))
         }
         val passwordState = remember { PasswordState() }
-
         val scope = rememberCoroutineScope()
+
+        var authRepository = AuthRepository()
+        var screenState = authRepository.screenState.collectAsState()
 
         Email(emailState)
 
@@ -173,7 +178,34 @@ fun SignInContent(
             onClick = {
                 if (emailState.isValid && passwordState.isValid) {
 
-                     MyApp.firebaseAuth
+                    scope.launch {
+
+                        authRepository.signIn(emailState.text,
+                             passwordState.text)
+
+                        delay(2000)
+                       // Log.d("MYNEWAPP", result.toString())
+
+                    if(screenState.value) {
+                        Log.d("MYNEWAPP", screenState.value.toString())
+                        Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                        onSignInSubmitted(emailState.text, passwordState.text)
+                    }
+                    else {
+                        Log.d("MYNEWAPP", screenState.value.toString())
+                        // onSignInSubmitted(emailState.text, passwordState.text)
+
+                    }
+
+                    }
+
+
+                   // Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+
+
+
+
+                    /* MyApp.firebaseAuth
                         .signInWithEmailAndPassword(emailState.text, passwordState.text)
                         .addOnCompleteListener{ task ->
 
@@ -185,7 +217,7 @@ fun SignInContent(
                             } else {
                                 Log.d("MYNEWAPP", "Else Block, no user signed in ")
                             }
-                        }
+                        }*/
                 }
 
                       },
