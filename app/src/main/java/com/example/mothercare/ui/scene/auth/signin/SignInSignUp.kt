@@ -53,7 +53,6 @@ fun SignInTopAppBar(
         },
         navigationIcon = {
             IconButton(onClick = NavUp) {
-
                 Icon(imageVector = Icons.Filled.KeyboardArrowLeft,
                     contentDescription = "navigation icon")
             }

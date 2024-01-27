@@ -79,11 +79,7 @@ fun SignInScreen(
     onNavUp: () -> Unit,
     modifier: Modifier
 ) {
-    val snackbarHostState = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
 
-    val snackbarErrorText = stringResource(id = R.string.feature_not_available)
-    val snackbarActionLabel = stringResource(id = R.string.dismiss)
     Scaffold(
         topBar = {
             SignInTopAppBar(topAppBarTitle = "SignIn", NavUp = onNavUp)
@@ -105,41 +101,15 @@ fun SignInScreen(
                          email = email,
                          onSignInSubmitted = onSignInSubmitted
                      )
-                     /* item {
-                     Spacer(modifier = Modifier.height(44.dp))
-                     Box(
-                         modifier = Modifier
-                             .fillMaxWidth()
-                             .padding(horizontal = 20.dp)
-                     ) {
-                         //content
-
-                     }
-                     Spacer(modifier = Modifier.height(16.dp))
-                 }*/
                  }
                  TextButton(
                      modifier = Modifier,
                      buttonText = "Forgot password?",
-                     onButtonClicked = {/*
-                         scope.launch {
-                             snackbarHostState.showSnackbar(
-                                 message = snackbarErrorText,
-                                 actionLabel = snackbarActionLabel
-                             )
-                         }*/
+                     onButtonClicked = {
                      })
              }
              Spacer(modifier = Modifier.height(32.dp))
          })
-
-    /*Box(modifier = Modifier.fillMaxSize()) {
-        ErrorSnackbar(
-            snackbarHostState = snackbarHostState,
-            onDismiss = { snackbarHostState.currentSnackbarData?.dismiss() },
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
-    }*/
 
 
 }
@@ -194,30 +164,8 @@ fun SignInContent(
                     else {
                         Log.d("MYNEWAPP", screenState.value.toString())
                         // onSignInSubmitted(emailState.text, passwordState.text)
+                    } }
 
-                    }
-
-                    }
-
-
-                   // Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
-
-
-
-
-                    /* MyApp.firebaseAuth
-                        .signInWithEmailAndPassword(emailState.text, passwordState.text)
-                        .addOnCompleteListener{ task ->
-
-                            //onSignInSubmitted( emailState.text, passwordState.text)
-
-                           if (task.isSuccessful) {
-                                onSignInSubmitted( emailState.text, passwordState.text)
-                                Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
-                            } else {
-                                Log.d("MYNEWAPP", "Else Block, no user signed in ")
-                            }
-                        }*/
                 }
 
                       },
@@ -231,208 +179,7 @@ fun SignInContent(
     }
 }
 
-@Composable
-fun ErrorSnackbar(
-    snackbarHostState: SnackbarHostState,
-    modifier: Modifier = Modifier,
-    onDismiss: () -> Unit = { }
-) {
-    SnackbarHost(
-        hostState = snackbarHostState,
-        snackbar = { data ->
-            Snackbar(
-                modifier = Modifier.padding(16.dp),
-                content = {
-                    Text(
-                        text = data.visuals.message,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                },
-                action = {
-                    data.visuals.actionLabel?.let {
-                        TextButton(onClick = onDismiss) {
-                            Text(
-                                text = stringResource(id = R.string.dismiss),
-                                color = MaterialTheme.colorScheme.inversePrimary
-                            )
-                        }
-                    }
-                }
-            )
-        },
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(Alignment.Bottom)
-    )
-}
 
-
-/*
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SignInTopAppBar(
-    topAppBarTitle: String,
-    NavUp: () -> Unit
-) {
-    CenterAlignedTopAppBar(
-        title = { 
-            Text(text = topAppBarTitle,
-                modifier = Modifier)
-        },
-        navigationIcon = {
-            IconButton(onClick = { NavUp}) {
-
-                Icon(imageVector = Icons.Filled.KeyboardArrowLeft,
-                    contentDescription = "navigation icon")
-            }
-        }
-    )
-}
-
-@Composable
-fun Email(
-    emailState: TextFieldState =  remember {EmailState()},
-    imeAction: ImeAction = ImeAction.Next,
-    onImeAction: () -> Unit = {}
-    ) {
-    OutlinedTextField(
-        value = emailState.text.toString(),
-        onValueChange = {
-            emailState.text = it
-        },
-        label = {
-            Text(text = "email",
-                style = Typography.bodyMedium)
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .onFocusChanged { focusState ->
-                emailState.onFocusChange(focusState.isFocused)
-                if (!focusState.isFocused) {
-                    emailState.enableShowErrors()
-                }
-            },
-        textStyle = MaterialTheme.typography.bodyMedium,
-        isError = emailState.showErrors(),
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = imeAction,
-            keyboardType = KeyboardType.Email
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                onImeAction()
-            }
-        ),
-        singleLine = true
-    )
-
-    emailState.getError()?.let { error -> TextFieldError(textError = error) }
-}
-
-
-@Composable
-fun Password(
-    label: String,
-    passwordState: TextFieldState,
-    modifier: Modifier = Modifier,
-    imeAction: ImeAction = ImeAction.Done,
-    onImeAction: () -> Unit = {}
-) {
-
-    val showPassword = rememberSaveable { mutableStateOf(false) }
-
-    OutlinedTextField(value = passwordState.text,
-        onValueChange = {
-            passwordState.text = it
-            passwordState.enableShowErrors()
-        },
-        modifier = modifier
-            .fillMaxWidth()
-            .onFocusChanged { focusState ->
-                passwordState.onFocusChange(focusState.isFocused)
-                if (!focusState.isFocused) {
-                    passwordState.enableShowErrors()
-                }
-            },
-        textStyle = MaterialTheme.typography.bodyMedium,
-        label = {
-            Text(text = label,
-                style = MaterialTheme.typography.bodyMedium)
-        },
-        trailingIcon = {
-            if (showPassword.value) {
-                IconButton(onClick = { showPassword.value = false }) {
-                    Icon(
-                        imageVector = Icons.Filled.Visibility,
-                        contentDescription = "hide password"
-                    )
-                }
-            } else {
-                IconButton(onClick = { showPassword.value = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.VisibilityOff,
-                        contentDescription = "show password")
-                }
-            }
-        },
-        visualTransformation = if (showPassword.value) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
-        isError = passwordState.showErrors(),
-
-    )
-
-}
-*/
-/**
- * To be removed when [TextField]s support error
- *//*
-
-@Composable
-fun TextFieldError(textError: String) {
-    Row(modifier = Modifier.fillMaxWidth()) {
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = textError,
-            modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colorScheme.error
-        )
-    }
-}
-
-@Composable
-fun ForgetPassword(
-    modifier: Modifier,
-    onForgotPasswordClicked: () -> Unit) {
-
-    TextButton(
-        onClick = {
-            onForgotPasswordClicked
-        },
-        ) {
-        Text(
-            text = "Forgot password?",
-            color = Color.Black)
-    }
-}
-*/
-
-
-/*
-@Preview()
-@Composable
-fun SignInContentPreview() {
-    MotherCareTheme {
-        Surface {
-            SignInContent(email = "",
-                onSignInSubmitted = {_, _ -> } )
-        }
-    }
-}
-*/
 
 @Preview()
 @Composable
@@ -448,30 +195,3 @@ fun SignInPreview() {
         }
     }
 }
-
-/*@Preview
-@Composable
-fun ForgetPasswordPreview() {
-    MotherCareTheme {
-        Surface {
-            ForgetPassword(modifier = Modifier) {
-
-            }
-        }
-    }
-}*/
-
-/*@Preview()
-@Composable
-fun SignUpContentPreview() {
-    MotherCareTheme {
-        Surface {
-            SignUpContent(
-                modifier = Modifier,
-                email = "",
-                onSignUpSubmitted = {_, _ -> })
-        }
-    }
-}*/
-
-
