@@ -81,7 +81,7 @@ fun SignUpContent(
     val scope = rememberCoroutineScope()
 
 
-    val viewModel = viewModel<SignInViewModel>()
+   // val viewModel = viewModel<SignInViewModel>()
 
     Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
