@@ -41,7 +41,6 @@ fun SignUpScreen(
     NavUp: () -> Unit ) {
 
 
-
     Scaffold(
         topBar = {
             SignInTopAppBar(topAppBarTitle = "Create Account", NavUp = NavUp ) },
