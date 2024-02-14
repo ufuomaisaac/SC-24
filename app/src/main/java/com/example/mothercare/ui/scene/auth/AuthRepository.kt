@@ -17,12 +17,19 @@ class AuthRepository(
 
     private var _signInState = MutableStateFlow<Boolean>(false)
 
+    private var _signUpState = MutableStateFlow<Boolean>(false)
+
     val signInState: MutableStateFlow<Boolean>
         get() = _signInState
 
+    val signUpState: MutableStateFlow<Boolean>
+        get() = _signUpState
 
 
-    fun signIn(email: String, password: String,) {
+
+
+
+    fun signIn(email: String, password: String) {
         MyApp.firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 Log.d(TAG, signInState.value.toString())
@@ -40,17 +47,19 @@ class AuthRepository(
             }
     }
 
-    fun signUp(email: String, password: String, navigate: (String, String) -> Unit): String {
-        var result: String = ""
-        MyApp.firebaseAuth.signInWithEmailAndPassword(email, password)
+    fun signUp(email: String, password: String) {
+
+        MyApp.firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {task ->
                 if(task.isSuccessful) {
                     //navigate to login screen
-                    navigate
+                    Log.d(TAG, "signUp is successful")
+                    _signUpState.value = true
+
                 } else {
-                    result = task.exception.toString()
+                    _signUpState.value = false
+                    Log.d(TAG, "signIn is not successful")
                 }
             }
-        return result
     }
 }
