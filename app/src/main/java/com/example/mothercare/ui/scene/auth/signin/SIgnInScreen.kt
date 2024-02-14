@@ -71,6 +71,7 @@ import com.example.mothercare.ui.scene.auth.state.PasswordState
 import com.example.mothercare.ui.scene.auth.state.TextFieldState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.sign
 
 @Composable
 fun SignInScreen(
@@ -131,7 +132,7 @@ fun SignInContent(
         val scope = rememberCoroutineScope()
 
         var authRepository = AuthRepository()
-        var screenState = authRepository.signInState.collectAsState()
+        var signInState = authRepository.signInState.collectAsState()
 
         Email(emailState)
 
@@ -158,18 +159,17 @@ fun SignInContent(
 
                        // Log.d("MYNEWAPP", result.toString())
 
-                    if(screenState.value) {
-                        Log.d("MYNEWAPP", screenState.value.toString())
+                    if(signInState.value) {
+                        Log.d("MYNEWAPP", signInState.value.toString())
                         Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
                         onSignInSubmitted(emailState.text, passwordState.text)
                     }
                     else {
-                        Log.d("MYNEWAPP", screenState.value.toString())
+                        Log.d("MYNEWAPP", signInState.value.toString())
                         // onSignInSubmitted(emailState.text, passwordState.text)
                     } }
 
                 }
-
                       },
             modifier = Modifier
                 .fillMaxWidth()

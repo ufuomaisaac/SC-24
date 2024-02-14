@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signup
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -24,6 +26,7 @@ import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
+import com.example.mothercare.ui.scene.auth.AuthRepository
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
@@ -76,9 +79,14 @@ fun SignUpContent(
     val confirmPasswordState = remember { ConfirmPasswordState(passwordState = passwordState) }
 
     val scope = rememberCoroutineScope()
+   // val scope = rememberCoroutineScope()
+
+    var authRepository = AuthRepository()
+    var signUpState = authRepository.signUpState.collectAsState()
 
 
-   // val viewModel = viewModel<SignInViewModel>()
+
+    // val viewModel = viewModel<SignInViewModel>()
 
     Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -107,7 +115,7 @@ fun SignUpContent(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                    scope.launch {
+                    /*scope.launch {
                         val result = MyApp.firebaseAuth
                             .createUserWithEmailAndPassword(emailState.text, passwordState.text )
                             .addOnCompleteListener { task ->
@@ -123,7 +131,26 @@ fun SignUpContent(
                     }
                 if(true) {
                     onSignUpSubmitted
-                }
+                }*/
+
+                scope.launch {
+
+                    authRepository.signUp(emailState.text,
+                        passwordState.text)
+
+                    delay(4000)
+
+                    // Log.d("MYNEWAPP", result.toString())
+
+                    if(signUpState.value) {
+                        Log.d("MYNEWAPP", signUpState.value.toString())
+                        Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                        onSignUpSubmitted()
+                    }
+                    else {
+                        Log.d("MYNEWAPP", signUpState.value.toString())
+                        // onSignInSubmitted(emailState.text, passwordState.text)
+                    } }
             },
             enabled = emailState.isValid &&
                     passwordState.isValid &&
