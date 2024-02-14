@@ -15,27 +15,27 @@ class AuthRepository(
 ) {
     var TAG = "MYNEWAPP"
 
-    private var _screenState = MutableStateFlow<Boolean>(false)
+    private var _signInState = MutableStateFlow<Boolean>(false)
 
-    val screenState: MutableStateFlow<Boolean>
-        get() = _screenState
+    val signInState: MutableStateFlow<Boolean>
+        get() = _signInState
 
 
 
     fun signIn(email: String, password: String,) {
         MyApp.firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                Log.d(TAG, screenState.value.toString())
+                Log.d(TAG, signInState.value.toString())
                 if(task.isSuccessful) {
                     Log.d(TAG, "signIn is successful")
-                    _screenState.value = true
+                    _signInState.value = true
                         // Log.d(TAG, result.toString())
                     //navigate to home screen
 
 
                 } else {
                    // result = task.exception.toString()
-                    _screenState.value = false
+                    _signInState.value = false
                 }
             }
     }

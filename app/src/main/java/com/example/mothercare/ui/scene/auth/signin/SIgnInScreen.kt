@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import android.service.autofill.OnClickAction
 import android.util.Log
+import android.widget.ProgressBar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -130,7 +131,7 @@ fun SignInContent(
         val scope = rememberCoroutineScope()
 
         var authRepository = AuthRepository()
-        var screenState = authRepository.screenState.collectAsState()
+        var screenState = authRepository.signInState.collectAsState()
 
         Email(emailState)
 
@@ -154,6 +155,7 @@ fun SignInContent(
                              passwordState.text)
 
                         delay(2000)
+
                        // Log.d("MYNEWAPP", result.toString())
 
                     if(screenState.value) {

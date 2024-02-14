@@ -36,7 +36,7 @@ fun OnEntryNavigatiion(
         composable(route = SIGN_UP_ROUTE) {
             SignUpScreen(
                 modifier = Modifier,
-                onSignUpSubmitted = { navController.navigate(route = SIGN_IN_ROUTE) },
+                onSignUpSubmitted = {navController.navigate(route = SIGN_IN_ROUTE) },
                 NavUp = { }
             )
         }
