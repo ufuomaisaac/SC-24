@@ -109,10 +109,26 @@ fun MainScreen() {
                     topic = "Exercise", navController = navController )
 
             }
-            composable(Articles.SecondArticle.name) {}
-            composable(Articles.ThirdArticle.name) {}
-            composable(Articles.FourthArticle.name) {}
-            composable(Articles.FifthArticle.name) {}
+            composable(Articles.SecondArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.ThirdArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.FourthArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.FifthArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
         }
     }
 }

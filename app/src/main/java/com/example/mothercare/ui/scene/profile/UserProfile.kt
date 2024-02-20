@@ -75,22 +75,22 @@ fun UserProfile(navController: NavController) {
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab2_quick_yoga ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.SecondArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab6_pre_natal_yoga ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.ThirdArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FourthArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FifthArticle.name) }, topic = "Exercise")
             }
 
     }
@@ -111,8 +111,8 @@ fun SearchBar(
                 Icon(imageVector = Icons.Default.Search , contentDescription = "search" )
             },
             onValueChange = {},
-            colors = TextFieldDefaults.textFieldColors(
-            ),
+            colors = TextFieldDefaults.colors(focusedContainerColor = Color.White
+            , unfocusedContainerColor = Color.White),
             placeholder = {
                 Text(text = "Search")
             },
