@@ -18,38 +18,46 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mothercare.R
+import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
 
 @Composable
 fun ArticleItem(modifier: Modifier = Modifier, @DrawableRes imageIdRes: Int,
-                @StringRes firstTextIdRes: Int, topic: String){
-    LazyColumn() {
+                @StringRes firstTextIdRes: Int, topic: String, navController: NavController){
+    Column() {
+        SignInTopAppBar(topAppBarTitle = topic, NavUp = {navController.popBackStack()})
+        LazyColumn() {
 
-        item {
-            Image(
-                painter = painterResource(id = imageIdRes),
-                contentDescription = "Artical image",
-                modifier = Modifier.fillMaxWidth()
-            )
+            item {
+                Image(
+                    painter = painterResource(id = imageIdRes),
+                    contentDescription = "Artical image",
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            Text(
-                text = topic,
-                modifier.padding(16.dp),
-                fontSize = 24.sp,
-                //textAlign = TextAlign.Justify
-            )
-/*
-            Text(
-                text = stringResource(id = R.string.first_text),
-                modifier.padding(16.dp),
-                textAlign = TextAlign.Justify
-            )
-*/
+                Text(
+                    text = topic,
+                    modifier.padding(16.dp),
+                    fontSize = 24.sp,
+                    //textAlign = TextAlign.Justify
+                )
+                /*
+                            Text(
+                                text = stringResource(id = R.string.first_text),
+                                modifier.padding(16.dp),
+                                textAlign = TextAlign.Justify
+                            )
+                */
 
-            Text(
-                text = stringResource(id = firstTextIdRes),
-                modifier.padding(16.dp),
-                textAlign = TextAlign.Justify
-            )
+                Text(
+                    text = stringResource(id = firstTextIdRes),
+                    modifier.padding(16.dp),
+                    textAlign = TextAlign.Justify
+                )
+            }
         }
+
+
     }
+
+
 }

@@ -105,7 +105,8 @@ fun MainScreen() {
                 UserProfile(navController = navController)
             }
             composable(Articles.FirstArticle.name) {
-                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article, topic = "Exercise" )
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
 
             }
             composable(Articles.SecondArticle.name) {}
