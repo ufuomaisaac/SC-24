@@ -29,6 +29,7 @@ import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.OnEntryNavigatiion
 import com.example.mothercare.ui.scene.auth.signin.Email
+import com.example.mothercare.ui.scene.profile.ArticleItem
 import com.example.mothercare.ui.scene.profile.Articles
 import com.example.mothercare.ui.scene.profile.UserProfile
 
@@ -101,15 +102,33 @@ fun MainScreen() {
             //composable(MainBottomDestinations.Map.route) {}
             composable(MainBottomDestinations.ChatBox.route) {}
             composable(MainBottomDestinations.Profile.route) {
-                UserProfile()
+                UserProfile(navController = navController)
             }
             composable(Articles.FirstArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
 
             }
-            composable(Articles.SecondArticle.name) {}
-            composable(Articles.ThirdArticle.name) {}
-            composable(Articles.FourthArticle.name) {}
-            composable(Articles.FifthArticle.name) {}
+            composable(Articles.SecondArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.ThirdArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.FourthArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
+            composable(Articles.FifthArticle.name) {
+                ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
+                    topic = "Exercise", navController = navController )
+
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.mothercare.ui.scene.main
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.LocationOn
@@ -43,7 +44,7 @@ sealed class MainBottomDestinations(
     object Profile: MainBottomDestinations(
         route = "profile",
         R.string.profile,
-        icon = Icons.Filled.AccountCircle
+        icon = Icons.Filled.Book
     )
 }
 

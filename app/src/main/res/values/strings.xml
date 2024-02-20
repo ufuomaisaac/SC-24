@@ -2,8 +2,8 @@
     <string name="app_name">MotherCare</string>
     <string name="home">Home</string>
     <string name="map_screen">Map</string>
-    <string name="chat_screen">ChatAI</string>
-    <string name="profile">Profile</string>
+    <string name="chat_screen">ChatBot</string>
+    <string name="profile">Library</string>
     <string name="welcome_screen_question">Signin or create an account</string>
 
     <string name="terms_and_conditions">By continuing, you agree to our Terms of Service. We’ll
@@ -12,6 +12,6 @@
     <string name="feature_not_available">Feature not available</string>
 
     <string name="first_article_preview">Health is wealth, knowing what to do is essential and good, life boils down to getting either you win to learn from your experience you can never lose...</string>
-
+    <string name="first_article">In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name. In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name</string>
 
 </resources>

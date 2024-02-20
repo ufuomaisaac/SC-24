@@ -44,6 +44,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.signin.SignInContent
@@ -53,7 +55,7 @@ import com.example.mothercare.ui.scene.auth.signin.TextButton
 
 
 @Composable
-fun UserProfile() {
+fun UserProfile(navController: NavController) {
     Column(){
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
@@ -68,27 +70,27 @@ fun UserProfile() {
         LazyColumn {
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = {  }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FirstArticle.name) }, topic = "Exercise")
+            }
+
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab2_quick_yoga ,
+                    onItemClicked = { navController.navigate(route = Articles.SecondArticle.name) }, topic = "Exercise")
+            }
+
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab6_pre_natal_yoga ,
+                    onItemClicked = { navController.navigate(route = Articles.ThirdArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FourthArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
-            }
-
-            items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
-            }
-
-            items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FifthArticle.name) }, topic = "Exercise")
             }
 
     }
@@ -109,8 +111,8 @@ fun SearchBar(
                 Icon(imageVector = Icons.Default.Search , contentDescription = "search" )
             },
             onValueChange = {},
-            colors = TextFieldDefaults.textFieldColors(
-            ),
+            colors = TextFieldDefaults.colors(focusedContainerColor = Color.White
+            , unfocusedContainerColor = Color.White),
             placeholder = {
                 Text(text = "Search")
             },
@@ -163,7 +165,7 @@ fun ProfilePreview() {
     MotherCareTheme {
         Surface {
 
-            UserProfile()
+            UserProfile(navController = rememberNavController())
         }
     }
 }
