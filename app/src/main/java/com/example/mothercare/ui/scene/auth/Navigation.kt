@@ -43,7 +43,7 @@ fun OnEntryNavigatiion(
         composable(route = SIGN_IN_ROUTE) {
             SignInScreen(
                 onSignInSubmitted = {_, _ -> navController.navigate(MAIN_ROUTE)} ,
-                onNavUp = { /*TODO*/ },
+                onNavUp = { navController.navigateUp() },
                 modifier = Modifier
             )
         }

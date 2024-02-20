@@ -29,6 +29,8 @@ import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.OnEntryNavigatiion
 import com.example.mothercare.ui.scene.auth.signin.Email
+import com.example.mothercare.ui.scene.profile.Articles
+import com.example.mothercare.ui.scene.profile.UserProfile
 
 class MainActivity : ComponentActivity() {
 
@@ -94,12 +96,20 @@ fun MainScreen() {
             modifier = Modifier.padding(padding)) {
 
             composable(MainBottomDestinations.Home.route) {
-                //Email()
+               // UserProfile(navUp = { /*TODO*/ }, userName = "Ufuoma Isaac")
             }
-            composable(MainBottomDestinations.Map.route) {}
+            //composable(MainBottomDestinations.Map.route) {}
             composable(MainBottomDestinations.ChatBox.route) {}
-            composable(MainBottomDestinations.Profile.route) {}
+            composable(MainBottomDestinations.Profile.route) {
+                UserProfile()
+            }
+            composable(Articles.FirstArticle.name) {
 
+            }
+            composable(Articles.SecondArticle.name) {}
+            composable(Articles.ThirdArticle.name) {}
+            composable(Articles.FourthArticle.name) {}
+            composable(Articles.FifthArticle.name) {}
         }
     }
 }
