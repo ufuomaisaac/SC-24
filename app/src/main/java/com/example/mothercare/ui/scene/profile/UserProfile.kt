@@ -44,6 +44,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.signin.SignInContent
@@ -53,7 +55,7 @@ import com.example.mothercare.ui.scene.auth.signin.TextButton
 
 
 @Composable
-fun UserProfile() {
+fun UserProfile(navController: NavController) {
     Column(){
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
@@ -68,16 +70,16 @@ fun UserProfile() {
         LazyColumn {
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = {  }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FirstArticle.name) }, topic = "Exercise")
             }
 
             items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab2_quick_yoga ,
                     onItemClicked = { /*TODO*/ }, topic = "Exercise")
             }
 
             items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab6_pre_natal_yoga ,
                     onItemClicked = { /*TODO*/ }, topic = "Exercise")
             }
 
@@ -163,7 +165,7 @@ fun ProfilePreview() {
     MotherCareTheme {
         Surface {
 
-            UserProfile()
+            UserProfile(navController = rememberNavController())
         }
     }
 }

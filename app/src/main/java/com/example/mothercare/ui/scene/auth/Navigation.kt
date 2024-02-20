@@ -40,15 +40,16 @@ fun OnEntryNavigatiion(
                 NavUp = { }
             )
         }
+
         composable(route = SIGN_IN_ROUTE) {
             SignInScreen(
-                onSignInSubmitted = {_, _ -> navController.navigate(MAIN_ROUTE)} ,
+                onSignInSubmitted = { _, _ -> navController.navigate(MAIN_ROUTE)} ,
                 onNavUp = { navController.navigateUp() },
                 modifier = Modifier
             )
         }
-       /* composable(route = SURVEY_ROUTE) {
-        }*/
+
+
         composable(route = MAIN_ROUTE) {
             MainScreen()
         }
