@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
@@ -29,6 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,28 +39,43 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.signin.SignInContent
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
 import com.example.mothercare.ui.scene.auth.signin.TextButton
 
+
+private data class DrawableStringPair(
+    @DrawableRes val imageId: Int,
+    @StringRes val textId: Int
+)
 @Composable
 fun UserProfile() {
-    Column {
+    Column(){
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Articles",
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp),
+            style = MaterialTheme.typography.h5,
+            color = Color.Black
+
             )
 
-        ClickableTextAndImage(TextId = 1234, ImageId = , onItemClicked = { /*TODO*/ }, briefText = "Health is wealth, knowing what to do is essential and good, life boils down to getting either you win to learn from your experience you can never lose...")
-
+        LazyColumn {
+            items(50) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+            }
     }
 
 }
+    }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,67 +102,39 @@ fun SearchBar(
     }
 }
 
+
 @Composable
-fun FavoriteCardCollection(
-    modifier: Modifier = Modifier,
-    @DrawableRes imageId: Int,
-    @StringRes textId: Int
-) {
+fun ClickableTextAndImage(@StringRes textId : Int, @DrawableRes imageId: Int,
+                          onItemClicked: () -> Unit, topic: String ) {
 
-    Surface(
-        shape = androidx.compose.material3.MaterialTheme.shapes.medium,
-        color = androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant,
-        modifier = modifier
-            .padding(8.dp)
+    Column(modifier = Modifier.padding()) {
 
-    ) {
+        Text(text = topic,
+            style = TextStyle(fontSize = 16.sp),
+            modifier = Modifier.padding(start = 16.dp))
 
-        Row(
-            modifier = modifier
-                .width(255.dp),
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-            ) {
             Image(
                 painter = painterResource(id = imageId),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(80.dp),
-                contentScale = ContentScale.Crop
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .clickable(onClick = onItemClicked),
+                contentScale = ContentScale.FillBounds
             )
-            Spacer(modifier = Modifier.width(8.dp))
 
             Text(
                 text = stringResource(id = textId),
-
+                modifier = Modifier.clickable(onClick = onItemClicked)
             )
         }
-    }
-}
-
-
-@Composable
-fun ClickableTextAndImage(@StringRes TextId : Int, @DrawableRes ImageId: Int, onItemClicked: () -> Unit, briefText: String) {
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.ab3_stretching),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .clickable(onClick = onItemClicked),
-            contentScale = ContentScale.FillBounds
-        )
-
-        Text(
-            text = briefText,
-            modifier = Modifier.clickable(onClick = onItemClicked)
-        )
     }
 }
 
