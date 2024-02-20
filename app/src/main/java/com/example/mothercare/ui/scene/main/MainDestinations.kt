@@ -29,11 +29,11 @@ sealed class MainBottomDestinations(
         icon = Icons.Filled.Home
     )
 
-    object Map: MainBottomDestinations(
+   /* object Map: MainBottomDestinations(
         route = "map",
         titleRes = R.string.map_screen,
         icon = Icons.Filled.LocationOn
-    )
+    )*/
 
     object ChatBox: MainBottomDestinations(
         route = "chatbox",
@@ -50,7 +50,7 @@ sealed class MainBottomDestinations(
 
 val BottomDestinationa = listOf(
     MainBottomDestinations.Home,
-    MainBottomDestinations.Map,
+   // MainBottomDestinations.Map,
     MainBottomDestinations.ChatBox,
     MainBottomDestinations.Profile
 )

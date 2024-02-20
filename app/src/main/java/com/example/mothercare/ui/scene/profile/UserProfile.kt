@@ -51,10 +51,7 @@ import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
 import com.example.mothercare.ui.scene.auth.signin.TextButton
 
 
-private data class DrawableStringPair(
-    @DrawableRes val imageId: Int,
-    @StringRes val textId: Int
-)
+
 @Composable
 fun UserProfile() {
     Column(){
@@ -64,14 +61,36 @@ fun UserProfile() {
             modifier = Modifier.padding(horizontal = 16.dp),
             style = MaterialTheme.typography.h5,
             color = Color.Black
-
             )
 
+        Spacer(modifier = Modifier.height(32.dp))
+
         LazyColumn {
-            items(50) {
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                    onItemClicked = {  }, topic = "Exercise")
+            }
+
+            items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
                     onItemClicked = { /*TODO*/ }, topic = "Exercise")
             }
+
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+            }
+
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+            }
+
+            items(1) {
+                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
+                    onItemClicked = { /*TODO*/ }, topic = "Exercise")
+            }
+
     }
 
 }
@@ -102,12 +121,11 @@ fun SearchBar(
     }
 }
 
-
 @Composable
 fun ClickableTextAndImage(@StringRes textId : Int, @DrawableRes imageId: Int,
                           onItemClicked: () -> Unit, topic: String ) {
 
-    Column(modifier = Modifier.padding()) {
+    Column(modifier = Modifier.padding(vertical = 16.dp)) {
 
         Text(text = topic,
             style = TextStyle(fontSize = 16.sp),
@@ -139,15 +157,12 @@ fun ClickableTextAndImage(@StringRes textId : Int, @DrawableRes imageId: Int,
 }
 
 
-
 @Preview
 @Composable
 fun ProfilePreview() {
     MotherCareTheme {
         Surface {
-           /* ClickableTextAndImage(onItemClicked = { *//*TODO*//* }, briefText = "Health is wealth, knowing what to do is essential and good," +
-                    " life boils down to getting either you win to learn from your experience," +
-                    " you can never lose...", )*/
+
             UserProfile()
         }
     }
