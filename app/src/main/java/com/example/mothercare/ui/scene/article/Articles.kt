@@ -1,9 +1,11 @@
-package com.example.mothercare.ui.scene.profile
+package com.example.mothercare.ui.scene.article
 
 enum class Articles {
     FirstArticle,
     SecondArticle,
     ThirdArticle,
     FourthArticle,
-    FifthArticle
+    FifthArticle,
+    OpenUrl,
+    CheckUpScreen,
 }

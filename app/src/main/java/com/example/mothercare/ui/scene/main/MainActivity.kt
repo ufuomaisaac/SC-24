@@ -1,11 +1,10 @@
 package com.example.mothercare.ui.scene.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -16,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -28,10 +26,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.OnEntryNavigatiion
-import com.example.mothercare.ui.scene.auth.signin.Email
-import com.example.mothercare.ui.scene.profile.ArticleItem
-import com.example.mothercare.ui.scene.profile.Articles
-import com.example.mothercare.ui.scene.profile.UserProfile
+import com.example.mothercare.ui.scene.article.ArticleItem
+import com.example.mothercare.ui.scene.article.Articles
+import com.example.mothercare.ui.scene.article.UserProfile
+import com.example.mothercare.ui.scene.chat.CheckoutScreen
+import com.example.mothercare.ui.scene.home.ChatbotActivity
+import com.example.mothercare.ui.scene.home.HomeScreen
+import com.example.mothercare.ui.scene.home.OpenUrlButton
+import com.example.mothercare.ui.scene.home.WebViewPage
 
 class MainActivity : ComponentActivity() {
 
@@ -41,7 +43,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MotherCareTheme {
                 //MainScreen()
-                OnEntryNavigatiion()
+                OnEntryNavigatiion(context = this@MainActivity)
             }
         }
     }
@@ -49,7 +51,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen() {
+fun MainScreen(context: MainActivity) {
     var navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var currentDestinations = navBackStackEntry?.destination
@@ -97,26 +99,41 @@ fun MainScreen() {
             modifier = Modifier.padding(padding)) {
 
             composable(MainBottomDestinations.Home.route) {
-               // UserProfile(navUp = { /*TODO*/ }, userName = "Ufuoma Isaac")
+               HomeScreen(
+                   navController = navController,
+                   onNavigateToReward = { /*TODO*/ },
+                   userName = "Ufuoma",
+                   userCredit = "123",
+                   context = context
+               )
             }
             //composable(MainBottomDestinations.Map.route) {}
-            composable(MainBottomDestinations.ChatBox.route) {}
+            composable(MainBottomDestinations.ChatBox.route) {
+                val intent = Intent(context, ChatbotActivity::class.java)
+                context.startActivity(intent)
+            }
             composable(MainBottomDestinations.Profile.route) {
                 UserProfile(navController = navController)
             }
+
+            composable(Articles.CheckUpScreen.name) {
+               CheckoutScreen(navController = navController)
+
+            }
+
             composable(Articles.FirstArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                    topic = "Balancing Nutrients", navController = navController )
 
             }
             composable(Articles.SecondArticle.name) {
-                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.second_article,
+                    topic = "Embracing Your Changing Body", navController = navController )
 
             }
             composable(Articles.ThirdArticle.name) {
-                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.third_article,
+                    topic = "Overcoming Pregnancy Depression", navController = navController )
 
             }
             composable(Articles.FourthArticle.name) {
