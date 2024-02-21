@@ -11,7 +11,42 @@
     <string name="dismiss">Dismiss</string>
     <string name="feature_not_available">Feature not available</string>
 
-    <string name="first_article_preview">Health is wealth, knowing what to do is essential and good, life boils down to getting either you win to learn from your experience you can never lose...</string>
-    <string name="first_article">In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name. In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name</string>
+    <string name="first_article_preview">  Do you know that a healthy diet can increase your fertility and prepare your body better for pregnancy? This means that your diet is not something you should be taking without proper considerations…</string>
+    <string name="first_article"> What is a healthy diet?
+            Do you know that a healthy diet can increase your fertility and prepare your body better for pregnancy? This means that your diet is not something you should be taking without proper considerations.
+            A healthy diet, also a balanced diet, is a diet that involves the right proportions of all the seven classes of food needed for proper nourishment of your body.
+          In case you cannot decide whether your diets are healthy or not, do not hesitate to contact your doctor. Together with him/her, you can draft out a nutritional weekly food timetable.
+
+ What to eat and what to avoid eating
+        There are so many diets around that have been proven medically to be healthy, and which can in turn benefits your body and health. Some of them include:
+-Fruits — like, pineapples, watermelons, apples, berries, oranges, mango, and bananas
+-Starchy foods— like potatoes, millet, yams, oatmeal, bulgur, and whole-wheat bread
+-Proteins — like lean meats(minus liver), and chicken, eggs, seafood, beans and lentils
+-Oils(in the right quantity) - like olive oil, vegetable oil, and oils in foods like seafood, avocado, and nuts
+- Plenty of water
+
+          So, what are the foods you should try your possible best to avoid?
+-Fish that have small amounts of mercury,e.g, bluefin tuna, swordfish, shark, mackerel.
+-Food and drinks that have caffeine are bad for you. Caffeine can be found in substances like tea, chocolate ,energy drinks, soda, etc. Your daily caffeine intake should not exceed 200 milligrams.
+-Refrigerated pates, smoked seafood or meat spreads
+        -Herbal products
+- Alcohol ( in any amount)
+-Unpasteurized juice, milk, soft cheeses, and so on.
+</string>
+    <string name="second_article_preview">Many a time a lot of women fidget about the body transformations that will occur during their pregnancy periods. Some even go as far as delaying getting pregnant because of this issue. While this kind of body transformations are inevitable and vary from women to women,you are not meant to be ashamed of them. By doing this, you will feel confident in yourself and have your self-esteem intact.
+</string>
+    <string name="second_article">  Many a time a lot of women fidget about the body transformations that will occur during their pregnancy periods. Some even go as far as delaying getting pregnant because of this issue. While this kind of body transformations are inevitable and vary from women to women,you are not meant to be ashamed of them. By doing this, you will feel confident in yourself and have your self-esteem intact.
+            There are three stages of pregnancy every woman must pass through, namely: first trimester(conception to 12 weeks), second trimester(13 to 27 weeks),  third trimester (28 to 40 weeks). With each trimester comes a fairly distinct kind of transformation your body must go throughFirst trimester:In the first trimester, your baby\'s little body starts taking shape, and all those tiny organs begin to form. Meanwhile, your own body goes through some pretty big adjustments too. You might notice things like feeling queasy, super tired, and making more trips to the bathroom than usual. This stage is mostly filled with a lot of emotional and physical changes, which can be overwhelming (especially for the first timers). Furthermore, your hormones tend to be hyperactive during this stage, thereby contributing to these unpleasant pregnancy symptoms(such as frequent mood swings ) you will be experiencing.
+          A supportive bra will also be needed due to the enlargement of your mammary glands, causing your breasts to swell in preparation for successful breastfeeding process. In addition, the veins on your breasts become more noticeable. Also, you need to consider wearing bigger clothes to prevent tightening your body.
+</string>
+
+
+    <string name="third_article">   Based on the research conducted by American Congress of Obstetricians and Gynecologists (ACOG), between 14-23% of women will struggle with some symptoms of depression during pregnancy. Depression is a frequent health condition that brings about repeated feelings of gloominess and changes in how you think, eat and act. It is something that should not be taken with levity hands, as it can both be dangerous to you and your baby\'s health.
+           Depression can take in any forms like bipolar II disorder, postpartum depression, and so on. So, you should be sensitive enough to your mood to detect any form of depression symptoms - sleep disturbances, suicidal thoughts, self-hatred, restlessness, irritability, anger outbursts, et cetera.Causes of Depression.What are the factors that can make you susceptible to depression? There are countless reasons that can lead you into depression or dejection. These reasons are a mix of social, psychological, economical and biological factors, some of which are highlighted below:-Loss of loved ones like husbands, family members, friends. -Physical or verbal abuse can contribute to depression.-Certain drugs like isotretinoin and corticosteroids can increase your risk of getting depressed.-Unpleasant life events like money worries, divorce, illness, miscarriage.
+</string>
+
+    <string name="third_article_preview">Based on the research conducted by American Congress of Obstetricians and Gynecologists (ACOG), between 14-23% of women will struggle with some symptoms of depression during pregnancy. Depression is a frequent health condition that brings about repeated feelings...</string>
+
+
 
 </resources>

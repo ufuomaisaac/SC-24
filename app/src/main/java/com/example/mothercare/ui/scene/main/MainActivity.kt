@@ -123,17 +123,17 @@ fun MainScreen(context: MainActivity) {
 
             composable(Articles.FirstArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                    topic = "Balancing Nutrients", navController = navController )
 
             }
             composable(Articles.SecondArticle.name) {
-                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.second_article,
+                    topic = "Embracing Your Changing Body", navController = navController )
 
             }
             composable(Articles.ThirdArticle.name) {
-                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.first_article,
-                    topic = "Exercise", navController = navController )
+                ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.third_article,
+                    topic = "Overcoming Pregnancy Depression", navController = navController )
 
             }
             composable(Articles.FourthArticle.name) {

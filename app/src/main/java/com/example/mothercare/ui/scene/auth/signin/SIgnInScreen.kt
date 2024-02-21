@@ -176,7 +176,8 @@ fun SignInContent(
                 .padding(top = 32.dp),
             enabled = emailState.isValid && passwordState.isValid
         ) {
-            Text(text = "Sign In")
+            Text(text = "Sign In",
+                color = Color.Black)
         }
     }
 }

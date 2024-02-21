@@ -53,17 +53,17 @@ fun UserProfile(navController: NavController) {
         LazyColumn {
             items(1) {
                 ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab3_stretching ,
-                    onItemClicked = { navController.navigate(route = Articles.FirstArticle.name) }, topic = "Exercise")
+                    onItemClicked = { navController.navigate(route = Articles.FirstArticle.name) }, topic = "Balancing Nutrients")
             }
 
             items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab2_quick_yoga ,
-                    onItemClicked = { navController.navigate(route = Articles.SecondArticle.name) }, topic = "Exercise")
+                ClickableTextAndImage(textId = R.string.second_article_preview, imageId = R.drawable.ab2_quick_yoga ,
+                    onItemClicked = { navController.navigate(route = Articles.SecondArticle.name) }, topic = "Embracing Your Changing Body")
             }
 
             items(1) {
-                ClickableTextAndImage(textId = R.string.first_article_preview, imageId = R.drawable.ab6_pre_natal_yoga ,
-                    onItemClicked = { navController.navigate(route = Articles.ThirdArticle.name) }, topic = "Exercise")
+                ClickableTextAndImage(textId = R.string.third_article_preview, imageId = R.drawable.ab6_pre_natal_yoga ,
+                    onItemClicked = { navController.navigate(route = Articles.ThirdArticle.name) }, topic = "Overcoming Pregnancy Depression")
             }
 
             items(1) {
