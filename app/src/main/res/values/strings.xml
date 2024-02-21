@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MotherCare</string>
+    <string name="app_name">WomenCare</string>
     <string name="home">Home</string>
     <string name="map_screen">Map</string>
     <string name="chat_screen">ChatBot</string>

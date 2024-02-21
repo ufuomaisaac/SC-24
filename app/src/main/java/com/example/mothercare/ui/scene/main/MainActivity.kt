@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,6 +29,8 @@ import com.example.mothercare.ui.scene.auth.OnEntryNavigatiion
 import com.example.mothercare.ui.scene.article.ArticleItem
 import com.example.mothercare.ui.scene.article.Articles
 import com.example.mothercare.ui.scene.article.UserProfile
+import com.example.mothercare.ui.scene.chat.CheckoutScreen
+import com.example.mothercare.ui.scene.home.ChatbotActivity
 import com.example.mothercare.ui.scene.home.HomeScreen
 import com.example.mothercare.ui.scene.home.OpenUrlButton
 import com.example.mothercare.ui.scene.home.WebViewPage
@@ -105,13 +108,16 @@ fun MainScreen(context: MainActivity) {
                )
             }
             //composable(MainBottomDestinations.Map.route) {}
-            composable(MainBottomDestinations.ChatBox.route) {}
+            composable(MainBottomDestinations.ChatBox.route) {
+                val intent = Intent(context, ChatbotActivity::class.java)
+                context.startActivity(intent)
+            }
             composable(MainBottomDestinations.Profile.route) {
                 UserProfile(navController = navController)
             }
 
-            composable(Articles.OpenUrl.name) {
-               // OpenUrlButton()
+            composable(Articles.CheckUpScreen.name) {
+               CheckoutScreen(navController = navController)
 
             }
 

@@ -198,7 +198,7 @@ private fun UpgradeAccount(
 
         Button(
             onClick = {
-               // navController.navigate(Screens.CheckoutScreen.name)
+               navController.navigate(Articles.CheckUpScreen.name)
 //                navController.navigate(Screens.PlansScreen.name)
             },
             colors = ButtonDefaults.buttonColors(
