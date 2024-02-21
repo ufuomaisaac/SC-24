@@ -29,6 +29,8 @@ import com.example.mothercare.ui.scene.article.ArticleItem
 import com.example.mothercare.ui.scene.article.Articles
 import com.example.mothercare.ui.scene.article.UserProfile
 import com.example.mothercare.ui.scene.home.HomeScreen
+import com.example.mothercare.ui.scene.home.OpenUrlButton
+import com.example.mothercare.ui.scene.home.WebViewPage
 
 class MainActivity : ComponentActivity() {
 
@@ -107,6 +109,12 @@ fun MainScreen(context: MainActivity) {
             composable(MainBottomDestinations.Profile.route) {
                 UserProfile(navController = navController)
             }
+
+            composable(Articles.OpenUrl.name) {
+               // OpenUrlButton()
+
+            }
+
             composable(Articles.FirstArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
                     topic = "Exercise", navController = navController )

@@ -5,5 +5,6 @@ enum class Articles {
     SecondArticle,
     ThirdArticle,
     FourthArticle,
-    FifthArticle
+    FifthArticle,
+    OpenUrl
 }

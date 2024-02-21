@@ -53,6 +53,7 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Neutral1
 import com.example.mothercare.theme.Neutral2
 import com.example.mothercare.theme.NewChatColor
+import com.example.mothercare.ui.scene.article.Articles
 import com.example.mothercare.ui.scene.article.UserProfile
 import com.example.mothercare.ui.scene.main.MainActivity
 import com.example.mothercare.ui.scene.main.MainBottomDestinations
@@ -133,9 +134,12 @@ fun HomeScreen(
                 UpgradeAccount(navController)
                 ActionButton(
                     onAIChatBuddyButtonClicked = {
-                        val intent = Intent(context, ChatbotActivity::class.java)
+                       // navController.navigate(route = Articles.OpenUrl.name)
+                        val intent =Intent(context, ChatbotActivity::class.java)
                         context.startActivity(intent)
-                    },
+
+                                                 }
+                    ,
                     onNewChatButtonClicked = { /*TODO*/ },
                     onChatHistoryButtonClicked = { })
 
@@ -232,7 +236,7 @@ private fun ActionButton(
     ) {
 
         Button(
-            onClick = { onAIChatBuddyButtonClicked },
+            onClick = onAIChatBuddyButtonClicked ,
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Blue
             ),
@@ -253,7 +257,7 @@ private fun ActionButton(
 
         Spacer(modifier = Modifier.height(15.dp))
         Button(
-            onClick = { onNewChatButtonClicked },
+            onClick =  onNewChatButtonClicked,
             colors = ButtonDefaults.buttonColors(
                 containerColor = NewChatColor
             ),
@@ -283,7 +287,7 @@ private fun ActionButton(
         Spacer(modifier = Modifier.height(15.dp))
 
         Button(
-            onClick = { onChatHistoryButtonClicked },
+            onClick = onChatHistoryButtonClicked ,
             colors = ButtonDefaults.buttonColors(
                 containerColor = LightGrey
             ),
