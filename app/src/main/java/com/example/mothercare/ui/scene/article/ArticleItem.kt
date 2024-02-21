@@ -1,7 +1,6 @@
-package com.example.mothercare.ui.scene.profile
+package com.example.mothercare.ui.scene.article
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -17,7 +16,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.mothercare.R
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
 
 @Composable

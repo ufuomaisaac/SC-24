@@ -1,5 +1,6 @@
 package com.example.mothercare.ui.scene.auth
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -13,6 +14,7 @@ import com.example.mothercare.ui.scene.auth.Destinations.SIGN_UP_ROUTE
 import com.example.mothercare.ui.scene.auth.Destinations.SURVEY_ROUTE
 import com.example.mothercare.ui.scene.auth.signin.SignInScreen
 import com.example.mothercare.ui.scene.auth.signup.SignUpScreen
+import com.example.mothercare.ui.scene.main.MainActivity
 import com.example.mothercare.ui.scene.main.MainScreen
 
 object Destinations{
@@ -26,7 +28,8 @@ object Destinations{
 
 @Composable
 fun OnEntryNavigatiion(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    context: MainActivity
 ) {
     NavHost(
         navController = navController,
@@ -51,7 +54,7 @@ fun OnEntryNavigatiion(
 
 
         composable(route = MAIN_ROUTE) {
-            MainScreen()
+            MainScreen(context = context)
         }
     }
 }

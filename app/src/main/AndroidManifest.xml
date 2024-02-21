@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MotherCare"
         tools:targetApi="31">
         <activity
+            android:name=".ui.scene.home.ChatbotActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.scene.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

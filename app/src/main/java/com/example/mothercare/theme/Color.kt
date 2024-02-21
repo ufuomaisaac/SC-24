@@ -71,3 +71,16 @@ val md_theme_dark_surfaceTint = Color(0xFFD9B9FF)
 
 val seed = Color(0xFF8100EF)
 
+
+
+val LightGrey = Color(0xFFE6E9F0)
+val BackGround = Color(0xFFFAFAFA)
+val Grey = Color(0xFF75818F)
+val Blue = Color(0xFF3F61DB)
+val Neutral1 = Color(0xFFFFFFFF)
+val Neutral2 = Color(0xFF000000)
+val Green1 = Color(0xFF5ECC62)
+val Green2 = Color(0xFF228b22)
+val DaisyBC = Color(0xFFFAFAFA)
+val NewChatColor = Color(0xFFD8DEEC)
+val CardColor = Color(0xFFD8DEEC)
