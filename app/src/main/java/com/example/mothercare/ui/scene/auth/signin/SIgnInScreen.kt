@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -44,6 +45,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -81,6 +83,8 @@ fun SignInScreen(
     onNavUp: () -> Unit,
     modifier: Modifier
 ) {
+
+
 
     Scaffold(
         topBar = {
@@ -122,7 +126,9 @@ fun SignInContent(
     email: String,
     onSignInSubmitted: (email: String, password: String) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
 
         val focusRequester = remember { FocusRequester() }
         val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
@@ -133,6 +139,7 @@ fun SignInContent(
 
         var authRepository = AuthRepository()
         var signInState = authRepository.signInState.collectAsState()
+        var isLoading by remember { mutableStateOf(false) }
 
         Email(emailState)
 
@@ -150,24 +157,30 @@ fun SignInContent(
             onClick = {
                 if (emailState.isValid && passwordState.isValid) {
 
+
+
                     scope.launch {
 
                         authRepository.signIn(emailState.text,
                              passwordState.text)
+                       // isLoading = true
 
-                        delay(2000)
+                        delay(2700)
 
-                       // Log.d("MYNEWAPP", result.toString())
+                       // Log.d("MYNEWAPP", result.to String())
 
                     if(signInState.value) {
                         Log.d("MYNEWAPP", signInState.value.toString())
                         Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
                         onSignInSubmitted(emailState.text, passwordState.text)
+                        //isLoading = false
                     }
                     else {
+                        //isLoading = false
                         Log.d("MYNEWAPP", signInState.value.toString())
                         // onSignInSubmitted(emailState.text, passwordState.text)
                     } }
+                   // isLoading = false
 
                 }
                       },
@@ -178,6 +191,9 @@ fun SignInContent(
         ) {
             Text(text = "Sign In",
                 color = Color.Black)
+        }
+        if (isLoading) {
+            CircularProgressIndicator()
         }
     }
 }

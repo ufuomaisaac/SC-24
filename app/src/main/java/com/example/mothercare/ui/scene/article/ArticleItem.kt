@@ -63,10 +63,12 @@ fun ArticleItem(modifier: Modifier = Modifier, @DrawableRes imageIdRes: Int,
                     color = Color.Black,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color.White))
+                        .height(32.dp)
+                        .background(Color.LightGray))
+
+                Spacer(modifier = Modifier.height(64.dp))
             }
         }
-
 
     }
 
