@@ -16,6 +16,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -33,7 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
+import com.example.mothercare.theme.MotherCareTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,7 +51,8 @@ fun CheckoutScreen(
             TopAppBar(
                 title = {
                     Text(
-                        modifier = Modifier.padding(horizontal = 6.dp),
+                        modifier = Modifier
+                            .padding(horizontal = 6.dp),
                         text = "Checkout",
                         style = TextStyle(
 //                color = Color.White,
@@ -60,10 +64,12 @@ fun CheckoutScreen(
                 },
                 navigationIcon = {
                     Icon(
-                        modifier = Modifier.clickable {
+                        modifier = Modifier
+                            .padding( horizontal = 15.dp)
+                            .clickable {
                             navController.popBackStack()
                         },
-                        painter = painterResource(id = com.google.android.material.R.drawable.ic_arrow_back_black_24),
+                        painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
                         contentDescription = null
                     )
                 }
@@ -73,7 +79,6 @@ fun CheckoutScreen(
 
         CheckoutForm(modifier.padding(it))
     }
-
 }
 
 
@@ -83,7 +88,6 @@ fun CheckoutScreen(
 fun CheckoutForm(
     modifier: Modifier = Modifier,
 ) {
-
 
     Card(
         modifier = Modifier
@@ -103,7 +107,6 @@ fun CheckoutForm(
             Text(
                 text = "Unlock All features with a Premium Account starting at just NGN 250/mo",
                 style = TextStyle(
-//                color = Color.White,
                     fontWeight = FontWeight.W600,
                     fontSize = 19.sp,
                     fontFamily = FontFamily.SansSerif
@@ -139,7 +142,6 @@ fun CheckoutForm(
                 Text(
                     text = "Total:",
                     style = TextStyle(
-//                color = Color.White,
                         fontWeight = FontWeight.W600,
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.montserrat_medium))
@@ -149,7 +151,6 @@ fun CheckoutForm(
                 Text(
                     text = "NGN 250/mo",
                     style = TextStyle(
-//                color = Color.White,
                         fontWeight = FontWeight.W600,
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.montserrat_medium))
@@ -178,15 +179,10 @@ fun CheckoutForm(
                         style = TextStyle(
                             color = Color.White,
                             fontWeight = FontWeight.W600,
-//                        fontSize = 17.sp,
                             fontFamily = FontFamily.Monospace
                         )
                     )
-//                    Icon(
-//                        painter = painterResource(id = R.drawable.baseline_arrow_forward_24),
-//                        contentDescription = null,
-//                        tint = Color(0xFFFFFFFF)
-//                    )
+
                 }
             }
         }
@@ -194,7 +190,7 @@ fun CheckoutForm(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun EditTextField(
     modifier: Modifier = Modifier,
@@ -211,4 +207,12 @@ fun EditTextField(
         label = { Text(text = label) },
         keyboardActions = KeyboardActions.Default,
     )
+}
+
+@Preview
+@Composable
+fun PreviewCheckOut() {
+    MotherCareTheme {
+        CheckoutScreen(navController = rememberNavController())
+    }
 }
