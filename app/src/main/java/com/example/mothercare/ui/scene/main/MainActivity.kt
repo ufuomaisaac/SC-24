@@ -36,7 +36,6 @@ import com.example.mothercare.ui.scene.home.OpenUrlButton
 import com.example.mothercare.ui.scene.home.WebViewPage
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -47,7 +46,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @Composable
@@ -66,7 +64,6 @@ fun MainScreen(context: MainActivity) {
                         selected = destination.route == currentDestinations?.route,
                         icon = {
                             Icon(imageVector = destination.icon, contentDescription = "")
-
                         },
                         alwaysShowLabel = false,
                         label = {
@@ -149,10 +146,6 @@ fun MainScreen(context: MainActivity) {
         }
     }
 }
-
-
-
-
 
 
 @Preview(showBackground = true)
