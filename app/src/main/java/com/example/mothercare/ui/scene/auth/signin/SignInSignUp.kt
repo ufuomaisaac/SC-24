@@ -38,7 +38,6 @@ import com.example.mothercare.theme.Typography
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.TextFieldState
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInTopAppBar(
@@ -156,9 +155,7 @@ fun Password(
         )
 
 }
-/**
- * To be removed when [TextField]s support error
- */
+
 @Composable
 fun TextFieldError(textError: String) {
     Row(modifier = Modifier.fillMaxWidth()) {
@@ -204,7 +201,7 @@ fun ForgetPasswordPreview() {
 fun SignUpContentPreview() {
     MotherCareTheme {
         Surface {
-            SignInScreen(onSignInSubmitted = {_, _ -> }, onNavUp = { /*TODO*/ }, modifier = Modifier)
+            SignInScreen(onSignInSubmitted = {_, _ -> }, onNavUp = {  }, modifier = Modifier)
         }
     }
 }

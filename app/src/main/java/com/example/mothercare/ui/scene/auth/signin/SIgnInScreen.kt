@@ -115,8 +115,8 @@ fun SignInScreen(
                      })
              }
              Spacer(modifier = Modifier.height(32.dp))
-         })
-
+         }
+    )
 
 }
 
@@ -157,10 +157,7 @@ fun SignInContent(
             onClick = {
                 if (emailState.isValid && passwordState.isValid) {
 
-
-
                     scope.launch {
-
                         authRepository.signIn(emailState.text,
                              passwordState.text)
                        // isLoading = true

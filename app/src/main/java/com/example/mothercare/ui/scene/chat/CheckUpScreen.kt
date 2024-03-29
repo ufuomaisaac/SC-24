@@ -45,7 +45,6 @@ fun CheckoutScreen(
     navController: NavController,
 ) {
 
-
     Scaffold(
         topBar = {
             TopAppBar(
