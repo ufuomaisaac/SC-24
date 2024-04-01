@@ -153,7 +153,6 @@ fun SignInContent(
             modifier = Modifier.focusRequester(focusRequester = focusRequester)
             )
 
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
@@ -172,7 +171,7 @@ fun SignInContent(
                         if (state.value) {
                             onSignInSubmitted(emailState.text, passwordState.text)
                             Log.d("NEWAGE", "Sign In Has been confirm ")
-                        } else  {
+                        } else {
                             Log.d("NEWAGE", "User is unable to sign in")
                         }
                     }
@@ -192,7 +191,6 @@ fun SignInContent(
     }
 
 }
-
 
 @Preview()
 @Composable

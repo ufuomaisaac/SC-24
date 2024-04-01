@@ -1,6 +1,7 @@
 package com.example.mothercare.ui.scene.auth.signup
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -73,6 +76,7 @@ fun SignUpContent(
     email: String = "",
     onSignUpSubmitted: () -> Unit
 ) {
+    val context = LocalContext.current
     val passwordFocusRequest = remember { FocusRequester() }
     val confirmationPasswordFocusRequest = remember { FocusRequester() }
 
@@ -85,7 +89,7 @@ fun SignUpContent(
 
     //var authRepository = AuthRepository()
     var authViewModel: AuthViewModel = hiltViewModel()
-   // var signUpState = authViewModel.signUpState.collectAsState()
+    var state = authViewModel.signUpState.collectAsState()
 
 
 
@@ -118,23 +122,6 @@ fun SignUpContent(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                    /*scope.launch {
-                        val result = MyApp.firebaseAuth
-                            .createUserWithEmailAndPassword(emailState.text, passwordState.text )
-                            .addOnCompleteListener { task ->
-                                if(task.isSuccessful){
-
-                                    //navigation not working
-                                    onSignUpSubmitted
-
-                                } else {
-                                    print("firebase authetication didnt work")
-                                }
-                            }
-                    }
-                if(true) {
-                    onSignUpSubmitted
-                }*/
 
                scope.launch {
 
@@ -143,15 +130,11 @@ fun SignUpContent(
 
                     delay(4000)
 
-/*                    if(signUpState.value) {
-                        Log.d("MYNEWAPP", signUpState.value.toString())
-                       //  Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                    if(state.value) {
+                        Log.d("MYNEWAPP", state.value.toString())
                         onSignUpSubmitted()
+                        Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
                     }
-                    else {
-                        Log.d("MYNEWAPP", signUpState.value.toString())
-                        // onSignInSubmitted(emailState.text, passwordState.text)
-                    } */
                }
             },
             enabled = emailState.isValid &&
