@@ -22,11 +22,13 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
 import com.example.mothercare.ui.scene.auth.AuthRepository
+import com.example.mothercare.ui.scene.auth.AuthViewModel
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
@@ -81,8 +83,9 @@ fun SignUpContent(
     val scope = rememberCoroutineScope()
    // val scope = rememberCoroutineScope()
 
-    var authRepository = AuthRepository()
-    var signUpState = authRepository.signUpState.collectAsState()
+    //var authRepository = AuthRepository()
+    var authViewModel: AuthViewModel = hiltViewModel()
+   // var signUpState = authViewModel.signUpState.collectAsState()
 
 
 
@@ -133,24 +136,23 @@ fun SignUpContent(
                     onSignUpSubmitted
                 }*/
 
-                scope.launch {
+               scope.launch {
 
-                    authRepository.signUp(emailState.text,
+                    authViewModel.signUp(emailState.text,
                         passwordState.text)
 
                     delay(4000)
 
-                    // Log.d("MYNEWAPP", result.toString())
-
-                    if(signUpState.value) {
+/*                    if(signUpState.value) {
                         Log.d("MYNEWAPP", signUpState.value.toString())
-                        Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                       //  Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
                         onSignUpSubmitted()
                     }
                     else {
                         Log.d("MYNEWAPP", signUpState.value.toString())
                         // onSignInSubmitted(emailState.text, passwordState.text)
-                    } }
+                    } */
+               }
             },
             enabled = emailState.isValid &&
                     passwordState.isValid &&
