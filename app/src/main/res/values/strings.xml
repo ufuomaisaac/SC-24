@@ -46,7 +46,7 @@
 </string>
 
     <string name="third_article_preview">Based on the research conducted by American Congress of Obstetricians and Gynecologists (ACOG), between 14-23% of women will struggle with some symptoms of depression during pregnancy. Depression is a frequent health condition that brings about repeated feelings...</string>
-
+    <string name="title_activity_splash">SplashActivity</string>
 
 
 </resources>
