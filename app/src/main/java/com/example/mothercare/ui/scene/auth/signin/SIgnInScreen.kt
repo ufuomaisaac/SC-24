@@ -60,12 +60,15 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Typography
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
 import com.example.mothercare.ui.scene.auth.AuthRepository
+import com.example.mothercare.ui.scene.auth.AuthViewModel
 import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
@@ -83,8 +86,6 @@ fun SignInScreen(
     onNavUp: () -> Unit,
     modifier: Modifier
 ) {
-
-
 
     Scaffold(
         topBar = {
@@ -117,7 +118,6 @@ fun SignInScreen(
              Spacer(modifier = Modifier.height(32.dp))
          }
     )
-
 }
 
 @Composable
@@ -136,10 +136,12 @@ fun SignInContent(
         }
         val passwordState = remember { PasswordState() }
         val scope = rememberCoroutineScope()
-
-        var authRepository = AuthRepository()
-        var signInState = authRepository.signInState.collectAsState()
         var isLoading by remember { mutableStateOf(false) }
+
+
+        var authViewModel : AuthViewModel = hiltViewModel()
+        var state = authViewModel.signInState.collectAsState()
+
 
         Email(emailState)
 
@@ -156,29 +158,23 @@ fun SignInContent(
         Button(
             onClick = {
                 if (emailState.isValid && passwordState.isValid) {
+                    isLoading = true
+
+                    Log.d("NEWAGE", "button has been clicked")
 
                     scope.launch {
-                        authRepository.signIn(emailState.text,
-                             passwordState.text)
-                       // isLoading = true
 
-                        delay(2700)
+                        authViewModel.signIn(emailState.text, passwordState.text)
 
-                       // Log.d("MYNEWAPP", result.to String())
+                        delay(3000)
 
-                    if(signInState.value) {
-                        Log.d("MYNEWAPP", signInState.value.toString())
-                        Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
-                        onSignInSubmitted(emailState.text, passwordState.text)
-                        //isLoading = false
+                        if (state.value) {
+                            onSignInSubmitted(emailState.text, passwordState.text)
+                            Log.d("NEWAGE", "Sign In Has been confirm ")
+                        } else {
+                            Log.d("NEWAGE", "User is unable to sign in")
+                        }
                     }
-                    else {
-                        //isLoading = false
-                        Log.d("MYNEWAPP", signInState.value.toString())
-                        // onSignInSubmitted(emailState.text, passwordState.text)
-                    } }
-                   // isLoading = false
-
                 }
                       },
             modifier = Modifier
@@ -189,13 +185,12 @@ fun SignInContent(
             Text(text = "Sign In",
                 color = Color.Black)
         }
-        if (isLoading) {
+        if(isLoading) {
             CircularProgressIndicator()
         }
     }
+
 }
-
-
 
 @Preview()
 @Composable

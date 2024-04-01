@@ -12,6 +12,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,14 +35,16 @@ import com.example.mothercare.ui.scene.home.ChatbotActivity
 import com.example.mothercare.ui.scene.home.HomeScreen
 import com.example.mothercare.ui.scene.home.OpenUrlButton
 import com.example.mothercare.ui.scene.home.WebViewPage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MotherCareTheme {
-                //MainScreen()
+                //MainScreen(this@MainActivity)
                 OnEntryNavigatiion(context = this@MainActivity)
             }
         }
@@ -49,7 +52,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(context: MainActivity) {
+fun MainScreen(context: MainActivity ) {
     var navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var currentDestinations = navBackStackEntry?.destination
@@ -148,9 +151,11 @@ fun MainScreen(context: MainActivity) {
 }
 
 
+
+/*
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MotherCareTheme {
     }
-}
+}*/

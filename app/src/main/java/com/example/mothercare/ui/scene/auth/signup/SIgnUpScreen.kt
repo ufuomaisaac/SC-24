@@ -1,6 +1,7 @@
 package com.example.mothercare.ui.scene.auth.signup
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,14 +20,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
 import com.example.mothercare.ui.scene.auth.AuthRepository
+import com.example.mothercare.ui.scene.auth.AuthViewModel
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
@@ -71,6 +76,7 @@ fun SignUpContent(
     email: String = "",
     onSignUpSubmitted: () -> Unit
 ) {
+    val context = LocalContext.current
     val passwordFocusRequest = remember { FocusRequester() }
     val confirmationPasswordFocusRequest = remember { FocusRequester() }
 
@@ -81,8 +87,9 @@ fun SignUpContent(
     val scope = rememberCoroutineScope()
    // val scope = rememberCoroutineScope()
 
-    var authRepository = AuthRepository()
-    var signUpState = authRepository.signUpState.collectAsState()
+    //var authRepository = AuthRepository()
+    var authViewModel: AuthViewModel = hiltViewModel()
+    var state = authViewModel.signUpState.collectAsState()
 
 
 
@@ -115,42 +122,20 @@ fun SignUpContent(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                    /*scope.launch {
-                        val result = MyApp.firebaseAuth
-                            .createUserWithEmailAndPassword(emailState.text, passwordState.text )
-                            .addOnCompleteListener { task ->
-                                if(task.isSuccessful){
 
-                                    //navigation not working
-                                    onSignUpSubmitted
+               scope.launch {
 
-                                } else {
-                                    print("firebase authetication didnt work")
-                                }
-                            }
-                    }
-                if(true) {
-                    onSignUpSubmitted
-                }*/
-
-                scope.launch {
-
-                    authRepository.signUp(emailState.text,
+                    authViewModel.signUp(emailState.text,
                         passwordState.text)
 
                     delay(4000)
 
-                    // Log.d("MYNEWAPP", result.toString())
-
-                    if(signUpState.value) {
-                        Log.d("MYNEWAPP", signUpState.value.toString())
-                        Log.d("MYNEWAPP", MyApp.firebaseAuth.currentUser.toString())
+                    if(state.value) {
+                        Log.d("MYNEWAPP", state.value.toString())
                         onSignUpSubmitted()
+                        Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
                     }
-                    else {
-                        Log.d("MYNEWAPP", signUpState.value.toString())
-                        // onSignInSubmitted(emailState.text, passwordState.text)
-                    } }
+               }
             },
             enabled = emailState.isValid &&
                     passwordState.isValid &&
