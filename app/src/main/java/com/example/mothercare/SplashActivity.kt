@@ -6,17 +6,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.mothercare.ui.scene.main.MainActivity
@@ -45,12 +50,14 @@ private fun Splash() {
         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
     }
-    Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            painter = painterResource(R.drawable.ab6_pre_natal_yoga),
-            contentDescription = "Splash",
-            contentScale = ContentScale.FillBounds
-            )
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.Black)) {
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(400.dp)
+            .background(color = Color.White)
+        )
     }
 }
 }
@@ -59,6 +66,6 @@ private fun Splash() {
 @Composable
 fun GreetingPreview() {
     MotherCareTheme {
-        //Greeting("Android")
+
     }
 }

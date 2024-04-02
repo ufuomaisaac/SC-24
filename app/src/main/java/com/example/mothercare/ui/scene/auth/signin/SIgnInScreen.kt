@@ -1,6 +1,7 @@
 package com.example.mothercare.ui.scene.auth.signin
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,10 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.AuthViewModel
 import com.example.mothercare.ui.scene.auth.state.EmailState
@@ -86,10 +87,14 @@ fun SignInContent(
     email: String,
     onSignInSubmitted: (email: String, password: String) -> Unit
 ) {
+
+    var TAG = "NEWAGE"
+
     Column(modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
 
+        var context = LocalContext.current
         val focusRequester = remember { FocusRequester() }
         val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
             mutableStateOf(EmailState(email))
@@ -97,14 +102,12 @@ fun SignInContent(
         val passwordState = remember { PasswordState() }
         val scope = rememberCoroutineScope()
         var isLoading by remember { mutableStateOf(false) }
-
-
         var authViewModel : AuthViewModel = hiltViewModel()
         var state = authViewModel.signInState.collectAsState()
 
 
-        Email(emailState)
 
+        Email(emailState)
         Spacer(modifier = Modifier.height(16.dp))
 
         Password(
@@ -125,13 +128,15 @@ fun SignInContent(
                     scope.launch {
 
                         authViewModel.signIn(emailState.text, passwordState.text)
-
-                        delay(3000)
+                        delay(4000)
+                        Log.d(TAG, "insideViewmodel ")
 
                         if (state.value) {
                             onSignInSubmitted(emailState.text, passwordState.text)
                             Log.d("NEWAGE", "Sign In Has been confirm ")
                         } else {
+                            isLoading = false
+                            Toast.makeText(context, "unable to sign in user",Toast.LENGTH_SHORT ).show()
                             Log.d("NEWAGE", "User is unable to sign in")
                         }
                     }
@@ -149,7 +154,6 @@ fun SignInContent(
             CircularProgressIndicator()
         }
     }
-
 }
 
 @Preview()
