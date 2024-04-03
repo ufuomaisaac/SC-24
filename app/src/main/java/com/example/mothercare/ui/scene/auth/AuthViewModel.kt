@@ -27,7 +27,7 @@ class  AuthViewModel @Inject constructor(
 
     private var _signInState = MutableStateFlow<Boolean>(false)
     private var _signUpState = MutableStateFlow<Boolean>(false)
-    //private var _authState by mutableStateOf(AuthState())
+    //private var _responseState = MutableStateFlow<>()
 
     val signInState: MutableStateFlow<Boolean>
         get() = _signInState
