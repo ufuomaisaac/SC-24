@@ -141,7 +141,8 @@ fun SignUpContent(
                     passwordState.isValid &&
                     confirmPasswordState.isValid) {
 
-            Text(text = "Create Account")
+            Text(text = "Create Account",
+                color = Color.Black)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
