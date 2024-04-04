@@ -1,6 +1,7 @@
 package com.example.mothercare.ui.scene.auth.signup
 
 import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -82,16 +84,9 @@ fun SignUpContent(
     val confirmPasswordState = remember { ConfirmPasswordState(passwordState = passwordState) }
 
     val scope = rememberCoroutineScope()
-   // val scope = rememberCoroutineScope()
-
-   // var authRepository = AuthRepository()
-  //  var signUpState = authRepository.signUpState.collectAsState()
 
     var authViewModel = hiltViewModel<AuthViewModel>()
 
-
-
-    // val viewModel = viewModel<SignInViewModel>()
 
     Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -119,7 +114,6 @@ fun SignUpContent(
         Spacer(modifier = Modifier.height(16.dp))
 
 
-
         Button(
             onClick = {
 
@@ -136,7 +130,6 @@ fun SignUpContent(
                     }
                     else {
                         Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
-
                     } }
             },
             modifier = Modifier.fillMaxWidth(),
