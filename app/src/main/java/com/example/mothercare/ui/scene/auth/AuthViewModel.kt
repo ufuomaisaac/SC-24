@@ -27,13 +27,16 @@ class  AuthViewModel @Inject constructor(
 
     private var _signInState = MutableStateFlow<Boolean>(false)
     private var _signUpState = MutableStateFlow<Boolean>(false)
-    //private var _authState by mutableStateOf(AuthState())
+    private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
 
     val signInState: MutableStateFlow<Boolean>
         get() = _signInState
 
     val signUpState: MutableStateFlow<Boolean>
         get() = _signUpState
+
+    val responseState : MutableStateFlow<SignInResponse>
+        get() = _responseState
 
 
   fun signIn(email: String, password: String) = viewModelScope.launch {
@@ -62,22 +65,30 @@ class  AuthViewModel @Inject constructor(
 
                 } else  {
                     /*try{
-                        task.exception!!
+                        task.exception
 
                     } catch (e: FirebaseAuthUserCollisionException) {
-                        Toast.makeText(
+                        Log.d("NEWAGE", "Email already taken!")
+
+*//*                        Toast.makeText(
                             context,
                             "Email already taken!",
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).show()*//*
                     } catch (e: FirebaseAuthWeakPasswordException) {
-                        Toast.makeText(
+                        Log.d("NEWAGE", "Your password is not strong enough!")
+
+                        *//*Toast.makeText(
                             context,
                             "Your password is not strong enough!",
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).show()*//*
                     } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(
+                        Log.d("NEWAGE", "Your email address or password is incorrect")
+
+                    }*/
+
+                        /*Toast.makeText(
                             context,
                             "Your email address or password is incorrect",
                             Toast.LENGTH_SHORT

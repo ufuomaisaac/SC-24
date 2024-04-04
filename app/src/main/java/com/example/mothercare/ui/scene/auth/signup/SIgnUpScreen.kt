@@ -1,7 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signup
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,17 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.mothercare.MyApp
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
-import com.example.mothercare.ui.scene.auth.AuthRepository
 import com.example.mothercare.ui.scene.auth.AuthViewModel
+
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
 import com.example.mothercare.ui.scene.auth.signin.SignInTopAppBar
@@ -76,7 +74,6 @@ fun SignUpContent(
     email: String = "",
     onSignUpSubmitted: () -> Unit
 ) {
-    val context = LocalContext.current
     val passwordFocusRequest = remember { FocusRequester() }
     val confirmationPasswordFocusRequest = remember { FocusRequester() }
 
@@ -87,9 +84,10 @@ fun SignUpContent(
     val scope = rememberCoroutineScope()
    // val scope = rememberCoroutineScope()
 
-    //var authRepository = AuthRepository()
-    var authViewModel: AuthViewModel = hiltViewModel()
-    var state = authViewModel.signUpState.collectAsState()
+   // var authRepository = AuthRepository()
+  //  var signUpState = authRepository.signUpState.collectAsState()
+
+    var authViewModel = hiltViewModel<AuthViewModel>()
 
 
 
@@ -119,24 +117,29 @@ fun SignUpContent(
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha))
 
         Spacer(modifier = Modifier.height(16.dp))
+
+
+
         Button(
-            modifier = Modifier.fillMaxWidth(),
             onClick = {
 
                scope.launch {
-
-                    authViewModel.signUp(emailState.text,
-                        passwordState.text)
+                    authViewModel.signUp(emailState.text, passwordState.text)
 
                     delay(4000)
 
-                    if(state.value) {
-                        Log.d("MYNEWAPP", state.value.toString())
+
+                    if(authViewModel.signUpState.value) {
+                        Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
+
                         onSignUpSubmitted()
-                        Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
                     }
-               }
+                    else {
+                        Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
+
+                    } }
             },
+            modifier = Modifier.fillMaxWidth(),
             enabled = emailState.isValid &&
                     passwordState.isValid &&
                     confirmPasswordState.isValid) {
