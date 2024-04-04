@@ -3,8 +3,10 @@ package com.example.mothercare.ui.scene.auth.signin
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -90,6 +92,8 @@ fun SignInContent(
 
     var TAG = "NEWAGE"
 
+        var isLoading by remember { mutableStateOf(false) }
+        
     Column(modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -101,10 +105,9 @@ fun SignInContent(
         }
         val passwordState = remember { PasswordState() }
         val scope = rememberCoroutineScope()
-        var isLoading by remember { mutableStateOf(false) }
-        var authViewModel : AuthViewModel = hiltViewModel()
-        var state = authViewModel.signInState.collectAsState()
 
+        var authViewModel: AuthViewModel = hiltViewModel()
+        var state = authViewModel.signInState.collectAsState()
 
 
         Email(emailState)
@@ -114,46 +117,68 @@ fun SignInContent(
             label = "password",
             passwordState = passwordState,
             modifier = Modifier.focusRequester(focusRequester = focusRequester)
-            )
+        )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                if (emailState.isValid && passwordState.isValid) {
-                    isLoading = true
-
-                    Log.d("NEWAGE", "button has been clicked")
-
-                    scope.launch {
-
-                        authViewModel.signIn(emailState.text, passwordState.text)
-                        delay(4000)
-                        Log.d(TAG, "insideViewmodel ")
-
-                        if (state.value) {
-                            onSignInSubmitted(emailState.text, passwordState.text)
-                            Log.d("NEWAGE", "Sign In Has been confirm ")
-                        } else {
-                            isLoading = false
-                            Toast.makeText(context, "unable to sign in user",Toast.LENGTH_SHORT ).show()
-                            Log.d("NEWAGE", "User is unable to sign in")
-                        }
-                    }
-                }
-                      },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 32.dp),
-            enabled = emailState.isValid && passwordState.isValid
+        Box(modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
         ) {
-            Text(text = "Sign In",
-                color = Color.Black)
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = {
+                        if (emailState.isValid && passwordState.isValid) {
+                            isLoading = true
+
+                            Log.d("NEWAGE", "button has been clicked")
+
+                            scope.launch {
+
+                                authViewModel.signIn(emailState.text, passwordState.text)
+                                delay(4000)
+                                Log.d(TAG, "insideViewmodel ")
+
+                                if (state.value) {
+                                    onSignInSubmitted(emailState.text, passwordState.text)
+                                    Log.d("NEWAGE", "Sign In Has been confirm ")
+                                } else {
+                                    isLoading = false
+                                    Toast.makeText(
+                                        context,
+                                        "unable to sign in user",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    Log.d("NEWAGE", "User is unable to sign in")
+                                }
+                            }
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 32.dp),
+                    enabled = emailState.isValid && passwordState.isValid
+                ) {
+                    Text(
+                        text = "Sign In",
+                        color = Color.Black
+                    )
+                }
+
+            }
+
+            if (isLoading) {
+                //Spacer(modifier = Modifier.height(100.dp))
+                CircularProgressIndicator()
+            }
         }
-        if(isLoading) {
-            CircularProgressIndicator()
-        }
+
     }
+
 }
 
 @Preview()
