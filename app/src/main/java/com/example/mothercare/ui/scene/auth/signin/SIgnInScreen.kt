@@ -168,17 +168,13 @@ fun SignInContent(
                         color = Color.Black
                     )
                 }
-
             }
-
             if (isLoading) {
                 //Spacer(modifier = Modifier.height(100.dp))
                 CircularProgressIndicator()
             }
         }
-
     }
-
 }
 
 @Preview()

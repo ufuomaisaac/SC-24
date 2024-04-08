@@ -107,7 +107,7 @@ fun MainScreen(context: MainActivity ) {
                    context = context
                )
             }
-            //composable(MainBottomDestinations.Map.route) {}
+
             composable(MainBottomDestinations.ChatBox.route) {
                 val intent = Intent(context, ChatbotActivity::class.java)
                 context.startActivity(intent)
@@ -150,12 +150,3 @@ fun MainScreen(context: MainActivity ) {
     }
 }
 
-
-
-/*
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MotherCareTheme {
-    }
-}*/
