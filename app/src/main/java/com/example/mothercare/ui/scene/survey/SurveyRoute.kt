@@ -111,7 +111,7 @@ fun SurveyRoute(
                     modifier = modifier,
                 )
 
-                SurveyQuestion.LAST_TAKEAWAY -> {
+               /* SurveyQuestion.LAST_TAKEAWAY -> {
                     val supportFragmentManager =
                         LocalContext.current.findActivity().supportFragmentManager
                     TakeawayQuestion(
@@ -125,7 +125,7 @@ fun SurveyRoute(
                         },
                         modifier = modifier,
                     )
-                }
+                }*/
 
                 SurveyQuestion.FEELING_ABOUT_SELFIES ->
                     FeelingAboutSelfiesQuestion(
@@ -134,12 +134,12 @@ fun SurveyRoute(
                         modifier = modifier,
                     )
 
-                SurveyQuestion.TAKE_SELFIE -> TakeSelfieQuestion(
+               /* SurveyQuestion.TAKE_SELFIE -> TakeSelfieQuestion(
                     imageUri = viewModel.selfieUri,
                     getNewImageUri = viewModel::getNewSelfieUri,
                     onPhotoTaken = viewModel::onSelfieResponse,
                     modifier = modifier,
-                )
+                )*/
             }
         }
     }

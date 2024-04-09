@@ -33,9 +33,9 @@ class SurveyViewModel(
     private val questionOrder: List<SurveyQuestion> = listOf(
         SurveyQuestion.FREE_TIME,
         SurveyQuestion.SUPERHERO,
-        SurveyQuestion.LAST_TAKEAWAY,
+      //  SurveyQuestion.LAST_TAKEAWAY,
         SurveyQuestion.FEELING_ABOUT_SELFIES,
-        SurveyQuestion.TAKE_SELFIE,
+       // SurveyQuestion.TAKE_SELFIE,
     )
 
     private var questionIndex = 0
@@ -140,9 +140,9 @@ class SurveyViewModel(
         return when (questionOrder[questionIndex]) {
             SurveyQuestion.FREE_TIME -> _freeTimeResponse.isNotEmpty()
             SurveyQuestion.SUPERHERO -> _superheroResponse.value != null
-            SurveyQuestion.LAST_TAKEAWAY -> _takeawayResponse.value != null
+          //  SurveyQuestion.LAST_TAKEAWAY -> _takeawayResponse.value != null
             SurveyQuestion.FEELING_ABOUT_SELFIES -> _feelingAboutSelfiesResponse.value != null
-            SurveyQuestion.TAKE_SELFIE -> _selfieUri.value != null
+          //  SurveyQuestion.TAKE_SELFIE -> _selfieUri.value != null
         }
     }
 
@@ -172,9 +172,9 @@ class SurveyViewModelFactory(
 enum class SurveyQuestion {
     FREE_TIME,
     SUPERHERO,
-    LAST_TAKEAWAY,
+   // LAST_TAKEAWAY,
     FEELING_ABOUT_SELFIES,
-    TAKE_SELFIE,
+   // TAKE_SELFIE,
 }
 
 data class SurveyScreenData(
