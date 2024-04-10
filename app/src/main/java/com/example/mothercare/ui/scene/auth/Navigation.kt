@@ -8,9 +8,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.jetsurvey.survey.SurveyRoute
 import com.example.mothercare.ui.scene.auth.Destinations.MAIN_ROUTE
 import com.example.mothercare.ui.scene.auth.Destinations.SIGN_IN_ROUTE
 import com.example.mothercare.ui.scene.auth.Destinations.SIGN_UP_ROUTE
+import com.example.mothercare.ui.scene.auth.Destinations.SURVEY_ROUTE
 import com.example.mothercare.ui.scene.auth.signin.SignInScreen
 import com.example.mothercare.ui.scene.auth.signup.SignUpScreen
 import com.example.mothercare.ui.scene.main.MainActivity
@@ -43,11 +45,19 @@ fun OnEntryNavigatiion(
 
         composable(route = SIGN_IN_ROUTE) {
             SignInScreen(
-                onSignInSubmitted = { _, _ -> navController.navigate(MAIN_ROUTE)},
+                onSignInSubmitted = { _, _ -> navController.navigate(SURVEY_ROUTE)},
                 onNavUp = { navController.navigateUp() },
                 modifier = Modifier
             )
         }
+        
+        composable(route = SURVEY_ROUTE) {
+            SurveyRoute(onSurveyComplete = {  }) {
+
+            }
+        }
+
+
 
         composable(route = MAIN_ROUTE) {
             MainScreen(context = context)
