@@ -34,10 +34,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mothercare.ui.scene.survey.FeelingAboutSelfiesQuestion
 import com.example.mothercare.ui.scene.survey.FreeTimeQuestion
-import com.example.mothercare.ui.scene.survey.PhotoUriManager
 import com.example.mothercare.ui.scene.survey.SuperheroQuestion
-import com.example.mothercare.ui.scene.survey.TakeSelfieQuestion
-import com.example.mothercare.ui.scene.survey.TakeawayQuestion
 import com.google.android.material.datepicker.MaterialDatePicker
 
 private const val CONTENT_ANIMATION_DURATION = 300
@@ -50,9 +47,7 @@ fun SurveyRoute(
     onSurveyComplete: () -> Unit,
     onNavUp: () -> Unit,
 ) {
-    val viewModel: SurveyViewModel = viewModel(
-        factory = SurveyViewModelFactory(PhotoUriManager(LocalContext.current))
-    )
+    val viewModel: SurveyViewModel = viewModel()
 
     val surveyScreenData = viewModel.surveyScreenData ?: return
 
@@ -111,21 +106,6 @@ fun SurveyRoute(
                     modifier = modifier,
                 )
 
-               /* SurveyQuestion.LAST_TAKEAWAY -> {
-                    val supportFragmentManager =
-                        LocalContext.current.findActivity().supportFragmentManager
-                    TakeawayQuestion(
-                        dateInMillis = viewModel.takeawayResponse,
-                        onClick = {
-                            showTakeawayDatePicker(
-                                date = viewModel.takeawayResponse,
-                                supportFragmentManager = supportFragmentManager,
-                                onDateSelected = viewModel::onTakeawayResponse
-                            )
-                        },
-                        modifier = modifier,
-                    )
-                }*/
 
                 SurveyQuestion.FEELING_ABOUT_SELFIES ->
                     FeelingAboutSelfiesQuestion(
@@ -133,13 +113,6 @@ fun SurveyRoute(
                         onValueChange = viewModel::onFeelingAboutSelfiesResponse,
                         modifier = modifier,
                     )
-
-               /* SurveyQuestion.TAKE_SELFIE -> TakeSelfieQuestion(
-                    imageUri = viewModel.selfieUri,
-                    getNewImageUri = viewModel::getNewSelfieUri,
-                    onPhotoTaken = viewModel::onSelfieResponse,
-                    modifier = modifier,
-                )*/
             }
         }
     }
@@ -162,21 +135,6 @@ private fun getTransitionDirection(
     }
 }
 
-private fun showTakeawayDatePicker(
-    date: Long?,
-    supportFragmentManager: FragmentManager,
-    onDateSelected: (date: Long) -> Unit,
-) {
-    val picker = MaterialDatePicker.Builder.datePicker()
-        .setSelection(date)
-        .build()
-    picker.show(supportFragmentManager, picker.toString())
-    picker.addOnPositiveButtonClickListener {
-        picker.selection?.let {
-            onDateSelected(it)
-        }
-    }
-}
 
 private tailrec fun Context.findActivity(): AppCompatActivity =
     when (this) {

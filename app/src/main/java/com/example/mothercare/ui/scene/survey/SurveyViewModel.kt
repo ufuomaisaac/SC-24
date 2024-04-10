@@ -21,21 +21,19 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mothercare.ui.scene.survey.PhotoUriManager
 import com.example.mothercare.ui.scene.survey.questions.Superhero
 
 const val simpleDateFormatPattern = "EEE, MMM d"
 
 class SurveyViewModel(
-    private val photoUriManager: PhotoUriManager
 ) : ViewModel() {
 
     private val questionOrder: List<SurveyQuestion> = listOf(
         SurveyQuestion.FREE_TIME,
         SurveyQuestion.SUPERHERO,
-      //  SurveyQuestion.LAST_TAKEAWAY,
+       // SurveyQuestion.LAST_TAKEAWAY,
         SurveyQuestion.FEELING_ABOUT_SELFIES,
-       // SurveyQuestion.TAKE_SELFIE,
+        //SurveyQuestion.TAKE_SELFIE,
     )
 
     private var questionIndex = 0
@@ -134,15 +132,15 @@ class SurveyViewModel(
         _isNextEnabled.value = getIsNextEnabled()
     }
 
-    fun getNewSelfieUri() = photoUriManager.buildNewUri()
+   // fun getNewSelfieUri() = photoUriManager.buildNewUri()
 
     private fun getIsNextEnabled(): Boolean {
         return when (questionOrder[questionIndex]) {
             SurveyQuestion.FREE_TIME -> _freeTimeResponse.isNotEmpty()
             SurveyQuestion.SUPERHERO -> _superheroResponse.value != null
-          //  SurveyQuestion.LAST_TAKEAWAY -> _takeawayResponse.value != null
+         //  SurveyQuestion.LAST_TAKEAWAY -> _takeawayResponse.value != null
             SurveyQuestion.FEELING_ABOUT_SELFIES -> _feelingAboutSelfiesResponse.value != null
-          //  SurveyQuestion.TAKE_SELFIE -> _selfieUri.value != null
+         //   SurveyQuestion.TAKE_SELFIE -> _selfieUri.value != null
         }
     }
 
@@ -157,8 +155,8 @@ class SurveyViewModel(
     }
 }
 
-class SurveyViewModelFactory(
-    private val photoUriManager: PhotoUriManager
+/*class SurveyViewModelFactory(
+  //  private val photoUriManager: PhotoUriManager
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -167,14 +165,14 @@ class SurveyViewModelFactory(
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-}
+}*/
 
 enum class SurveyQuestion {
     FREE_TIME,
     SUPERHERO,
-   // LAST_TAKEAWAY,
+    //LAST_TAKEAWAY,
     FEELING_ABOUT_SELFIES,
-   // TAKE_SELFIE,
+  // TAKE_SELFIE,
 }
 
 data class SurveyScreenData(

@@ -1,12 +1,10 @@
 package com.example.mothercare.ui.scene.survey
 
-import android.net.Uri
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.mothercare.R
-import com.example.mothercare.ui.scene.survey.questions.DateQuestion
 import com.example.mothercare.ui.scene.survey.questions.MultipleChoiceQuestion
-import com.example.mothercare.ui.scene.survey.questions.PhotoQuestion
 import com.example.mothercare.ui.scene.survey.questions.SingleChoiceQuestion
 import com.example.mothercare.ui.scene.survey.questions.SliderQuestion
 import com.example.mothercare.ui.scene.survey.questions.Superhero
@@ -55,20 +53,6 @@ fun SuperheroQuestion(
     )
 }
 
-@Composable
-fun TakeawayQuestion(
-    dateInMillis: Long?,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    DateQuestion(
-        titleResourceId = R.string.takeaway,
-        directionsResourceId = R.string.select_date,
-        dateInMillis = dateInMillis,
-        onClick = onClick,
-        modifier = modifier,
-    )
-}
 
 @Composable
 fun FeelingAboutSelfiesQuestion(
@@ -87,18 +71,3 @@ fun FeelingAboutSelfiesQuestion(
     )
 }
 
-@Composable
-fun TakeSelfieQuestion(
-    imageUri: Uri?,
-    getNewImageUri: () -> Uri,
-    onPhotoTaken: (Uri) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    PhotoQuestion(
-        titleResourceId = R.string.selfie_skills,
-        imageUri = imageUri,
-        getNewImageUri = getNewImageUri,
-        onPhotoTaken = onPhotoTaken,
-        modifier = modifier,
-    )
-}

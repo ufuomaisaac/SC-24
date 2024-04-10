@@ -50,7 +50,6 @@ fun QuestionWrapper(
             QuestionDirections(it)
         }
         Spacer(Modifier.height(18.dp))
-
         content()
     }
 }
@@ -95,7 +94,6 @@ private fun QuestionDirections(
 fun preview1 () {
     MotherCareTheme {
         Surface {
-            //QuestionTitle(title = null)
 
         }
     }
