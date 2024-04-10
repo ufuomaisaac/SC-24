@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.example.compose.jetsurvey.survey
 
@@ -22,18 +7,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mothercare.ui.scene.survey.questions.Superhero
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-const val simpleDateFormatPattern = "EEE, MMM d"
-
-class SurveyViewModel(
+@HiltViewModel
+class SurveyViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val questionOrder: List<SurveyQuestion> = listOf(
         SurveyQuestion.FREE_TIME,
         SurveyQuestion.SUPERHERO,
-       // SurveyQuestion.LAST_TAKEAWAY,
-        SurveyQuestion.FEELING_ABOUT_SELFIES,
-        //SurveyQuestion.TAKE_SELFIE,
+        SurveyQuestion.FEELING_ABOUT_SELFIES
+
     )
 
     private var questionIndex = 0
@@ -48,17 +33,9 @@ class SurveyViewModel(
     val superheroResponse: Superhero?
         get() = _superheroResponse.value
 
-    private val _takeawayResponse = mutableStateOf<Long?>(null)
-    val takeawayResponse: Long?
-        get() = _takeawayResponse.value
-
     private val _feelingAboutSelfiesResponse = mutableStateOf<Float?>(null)
     val feelingAboutSelfiesResponse: Float?
         get() = _feelingAboutSelfiesResponse.value
-
-    private val _selfieUri = mutableStateOf<Uri?>(null)
-    val selfieUri
-        get() = _selfieUri.value
 
     // ----- Survey status exposed as State -----
 
@@ -117,30 +94,16 @@ class SurveyViewModel(
         _isNextEnabled.value = getIsNextEnabled()
     }
 
-    fun onTakeawayResponse(timestamp: Long) {
-        _takeawayResponse.value = timestamp
-        _isNextEnabled.value = getIsNextEnabled()
-    }
-
     fun onFeelingAboutSelfiesResponse(feeling: Float) {
         _feelingAboutSelfiesResponse.value = feeling
         _isNextEnabled.value = getIsNextEnabled()
     }
 
-    fun onSelfieResponse(uri: Uri) {
-        _selfieUri.value = uri
-        _isNextEnabled.value = getIsNextEnabled()
-    }
-
-   // fun getNewSelfieUri() = photoUriManager.buildNewUri()
-
     private fun getIsNextEnabled(): Boolean {
         return when (questionOrder[questionIndex]) {
             SurveyQuestion.FREE_TIME -> _freeTimeResponse.isNotEmpty()
             SurveyQuestion.SUPERHERO -> _superheroResponse.value != null
-         //  SurveyQuestion.LAST_TAKEAWAY -> _takeawayResponse.value != null
             SurveyQuestion.FEELING_ABOUT_SELFIES -> _feelingAboutSelfiesResponse.value != null
-         //   SurveyQuestion.TAKE_SELFIE -> _selfieUri.value != null
         }
     }
 
@@ -155,24 +118,10 @@ class SurveyViewModel(
     }
 }
 
-/*class SurveyViewModelFactory(
-  //  private val photoUriManager: PhotoUriManager
-) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SurveyViewModel::class.java)) {
-            return SurveyViewModel(photoUriManager) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}*/
-
 enum class SurveyQuestion {
     FREE_TIME,
     SUPERHERO,
-    //LAST_TAKEAWAY,
     FEELING_ABOUT_SELFIES,
-  // TAKE_SELFIE,
 }
 
 data class SurveyScreenData(

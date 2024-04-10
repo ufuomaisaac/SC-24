@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.fragment.app.FragmentManager
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mothercare.ui.scene.survey.FeelingAboutSelfiesQuestion
 import com.example.mothercare.ui.scene.survey.FreeTimeQuestion
@@ -47,7 +48,8 @@ fun SurveyRoute(
     onSurveyComplete: () -> Unit,
     onNavUp: () -> Unit,
 ) {
-    val viewModel: SurveyViewModel = viewModel()
+   // val viewModel: SurveyViewModel = viewModel()
+    val viewModel = hiltViewModel<SurveyViewModel>()
 
     val surveyScreenData = viewModel.surveyScreenData ?: return
 
@@ -135,10 +137,3 @@ private fun getTransitionDirection(
     }
 }
 
-
-private tailrec fun Context.findActivity(): AppCompatActivity =
-    when (this) {
-        is AppCompatActivity -> this
-        is ContextWrapper -> this.baseContext.findActivity()
-        else -> throw IllegalArgumentException("Could not find activity!")
-    }
