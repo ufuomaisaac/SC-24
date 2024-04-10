@@ -94,7 +94,6 @@ private fun QuestionDirections(
 fun preview1 () {
     MotherCareTheme {
         Surface {
-
         }
     }
 }
