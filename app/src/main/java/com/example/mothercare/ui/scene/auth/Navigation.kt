@@ -52,9 +52,9 @@ fun OnEntryNavigatiion(
         }
         
         composable(route = SURVEY_ROUTE) {
-            SurveyRoute(onSurveyComplete = {  }) {
-
-            }
+            SurveyRoute(
+                onSurveyComplete = { navController.navigate(route = MAIN_ROUTE)},
+                onNavUp ={ navController.navigateUp() } )
         }
 
 
