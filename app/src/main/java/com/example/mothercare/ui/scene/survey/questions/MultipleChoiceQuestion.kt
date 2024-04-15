@@ -59,8 +59,9 @@ fun MultipleChoiceQuestion(
                 modifier = Modifier.padding(vertical = 8.dp),
                 text = stringResource(id = it),
                 selected = selected,
-                onOptionSelected = { onOptionSelected(!selected, it) }
+                onOptionSelected = {onOptionSelected(!selected, it)}
             )
+
         }
     }
 }
