@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.mothercare.ui.scene.main.MainActivity
 import com.example.mothercare.ui.theme.MotherCareTheme
+import io.grpc.android.BuildConfig
 import kotlinx.coroutines.delay
 
 class SplashActivity : ComponentActivity() {
@@ -34,6 +35,8 @@ class SplashActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MotherCareTheme {
+
+
                 //installSplashScreen()
                 Splash()
             }
@@ -48,7 +51,6 @@ private fun Splash() {
     LaunchedEffect(key1 = true) {
         delay(5000)
         startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-
     }
     Box(modifier = Modifier
         .fillMaxSize()
