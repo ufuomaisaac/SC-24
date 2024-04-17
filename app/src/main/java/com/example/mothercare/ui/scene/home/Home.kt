@@ -53,8 +53,8 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Neutral1
 import com.example.mothercare.theme.Neutral2
 import com.example.mothercare.theme.NewChatColor
-import com.example.mothercare.ui.scene.article.Articles
-import com.example.mothercare.ui.scene.article.UserProfile
+import com.example.mothercare.ui.scene.survey.article.Articles
+import com.example.mothercare.ui.scene.survey.article.UserProfile
 import com.example.mothercare.ui.scene.main.MainActivity
 import com.example.mothercare.ui.scene.main.MainBottomDestinations
 import com.google.firebase.Firebase

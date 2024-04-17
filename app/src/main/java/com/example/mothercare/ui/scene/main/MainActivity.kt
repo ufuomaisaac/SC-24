@@ -12,12 +12,10 @@ import androidx.compose.material.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -27,14 +25,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.OnEntryNavigatiion
-import com.example.mothercare.ui.scene.article.ArticleItem
-import com.example.mothercare.ui.scene.article.Articles
-import com.example.mothercare.ui.scene.article.UserProfile
-import com.example.mothercare.ui.scene.chat.CheckoutScreen
+import com.example.mothercare.ui.scene.survey.article.ArticleItem
+import com.example.mothercare.ui.scene.survey.article.Articles
+import com.example.mothercare.ui.scene.survey.article.UserProfile
+import com.example.mothercare.ui.scene.home.CheckoutScreen
 import com.example.mothercare.ui.scene.home.ChatbotActivity
 import com.example.mothercare.ui.scene.home.HomeScreen
-import com.example.mothercare.ui.scene.home.OpenUrlButton
-import com.example.mothercare.ui.scene.home.WebViewPage
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -8,22 +8,19 @@ import com.google.firebase.auth.auth
 import dagger.Module
 import dagger.hilt.android.HiltAndroidApp
 import com.example.mothercare.BuildConfig
+import com.google.ai.client.generativeai.type.generationConfig
 
 @HiltAndroidApp
 class MyApp: Application() {
 
     // Access your API key as a Build Configuration variable
     val apiKey = BuildConfig.apikey
-   /* var TAG = "MYNEWAPP"
 
     companion object {
-        lateinit var firebaseAuth: FirebaseAuth
+        val config = generationConfig {
+            temperature = 0.7f
+        }
     }
 
 
-    override fun onCreate() {
-        super.onCreate()
-        firebaseAuth = Firebase.auth
-        //Log.d(TAG, "signInWithEmail:success MYAPP")
-    }*/
 }
