@@ -7,9 +7,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import dagger.Module
 import dagger.hilt.android.HiltAndroidApp
+import com.example.mothercare.BuildConfig
 
 @HiltAndroidApp
 class MyApp: Application() {
+
+    // Access your API key as a Build Configuration variable
+    val apiKey = BuildConfig.apikey
    /* var TAG = "MYNEWAPP"
 
     companion object {

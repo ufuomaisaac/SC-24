@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mothercare.R
 import com.example.mothercare.ui.scene.survey.QuestionWrapper
 
+
  @Composable
 fun MultipleChoiceQuestion(
     @StringRes titleResourceId: Int,
@@ -61,7 +62,6 @@ fun MultipleChoiceQuestion(
                 selected = selected,
                 onOptionSelected = {onOptionSelected(!selected, it)}
             )
-
         }
     }
 }

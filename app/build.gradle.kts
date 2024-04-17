@@ -4,7 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
 }
 
@@ -43,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -93,19 +94,19 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
-
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     kapt("com.google.dagger:hilt-android-compiler:2.46.1")
 
-
     // SplashScreen
     implementation("androidx.core:core-splashscreen:1.0.0")
 
-
     //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Google AI SDK for Android
+    implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
 
 
 }

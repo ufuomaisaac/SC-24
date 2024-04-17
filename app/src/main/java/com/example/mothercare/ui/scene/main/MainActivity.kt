@@ -37,6 +37,7 @@ import com.example.mothercare.ui.scene.home.OpenUrlButton
 import com.example.mothercare.ui.scene.home.WebViewPage
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MotherCareTheme {
+
+
+
                 //MainScreen(this@MainActivity)
                 OnEntryNavigatiion(context = this@MainActivity)
             }
