@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.article
+package com.example.mothercare.ui.scene.survey.article
 
 enum class Articles {
     FirstArticle,
