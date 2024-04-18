@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,14 +31,14 @@ class  AuthViewModel @Inject constructor(
     private var _signUpState = MutableStateFlow<Boolean>(false)
     private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
 
-    val signInState: MutableStateFlow<Boolean>
-        get() = _signInState
+    val signInState: StateFlow<Boolean>
+        get() = _signInState.asStateFlow()
 
-    val signUpState: MutableStateFlow<Boolean>
-        get() = _signUpState
+    val signUpState: StateFlow<Boolean>
+        get() = _signUpState.asStateFlow()
 
-    val responseState : MutableStateFlow<SignInResponse>
-        get() = _responseState
+    val responseState : StateFlow<SignInResponse>
+        get() = _responseState.asStateFlow()
 
 
   fun signIn(email: String, password: String) = viewModelScope.launch {
@@ -53,7 +55,6 @@ class  AuthViewModel @Inject constructor(
                      _signInState.value = false
               }
           }
-
   }
 
     fun signUp(email: String, password: String) = viewModelScope.launch {

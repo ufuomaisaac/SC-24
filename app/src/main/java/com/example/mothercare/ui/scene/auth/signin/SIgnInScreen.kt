@@ -142,7 +142,7 @@ fun SignInContent(
                             scope.launch {
 
                                 authViewModel.signIn(emailState.text, passwordState.text)
-                                delay(4000)
+                                //delay(4000)
                                 Log.d(TAG, "insideViewmodel ")
 
                                 if (state.value) {
