@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,7 +42,7 @@ class  AuthViewModel @Inject constructor(
         get() = _responseState.asStateFlow()
 
 
-  fun signIn(email: String, password: String) = viewModelScope.launch {
+  fun signIn(email: String, password: String) = viewModelScope.launch() {
       auth.signInWithEmailAndPassword(email, password)
           .addOnCompleteListener { task ->
                Log.d("NEWAGE", "inside the viewmodel")
@@ -49,10 +50,12 @@ class  AuthViewModel @Inject constructor(
               if(task.isSuccessful) {
 
                      _signInState.value = true
+                  Log.d("NEWAGE", "success")
 
               } else  {
 
                      _signInState.value = false
+                  Log.d("NEWAGE", "failed")
               }
           }
   }

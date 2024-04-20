@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -37,8 +36,6 @@ import com.example.mothercare.ui.scene.auth.AuthViewModel
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
-import io.grpc.android.BuildConfig
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -76,8 +73,7 @@ fun SignInScreen(
                  TextButton(
                      modifier = Modifier,
                      buttonText = "Forgot password?",
-                     onButtonClicked = {
-                     })
+                     onButtonClicked = {})
              }
              Spacer(modifier = Modifier.height(32.dp))
          }
@@ -142,7 +138,7 @@ fun SignInContent(
                             scope.launch {
 
                                 authViewModel.signIn(emailState.text, passwordState.text)
-                                //delay(4000)
+
                                 Log.d(TAG, "insideViewmodel ")
 
                                 if (state.value) {
