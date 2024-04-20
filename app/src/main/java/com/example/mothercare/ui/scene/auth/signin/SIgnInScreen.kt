@@ -177,7 +177,9 @@ fun SignInContent(
 
                         }
 
-                    AuthUiState.Success -> onSignInSubmitted
+                    AuthUiState.Success ->  {
+                        onSignInSubmitted
+                    }
 
                 }
             }
