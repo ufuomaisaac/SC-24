@@ -159,7 +159,6 @@ fun SignInContent(
                 when (uiState) {
                     AuthUiState.Initial-> {
 
-
                     }
                     AuthUiState.Loading -> {
                         Box(
