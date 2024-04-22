@@ -29,7 +29,7 @@ import com.example.mothercare.ui.scene.survey.article.ArticleItem
 import com.example.mothercare.ui.scene.survey.article.Articles
 import com.example.mothercare.ui.scene.survey.article.UserProfile
 import com.example.mothercare.ui.scene.home.CheckoutScreen
-import com.example.mothercare.ui.scene.home.ChatbotActivity
+import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
 import com.example.mothercare.ui.scene.home.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 

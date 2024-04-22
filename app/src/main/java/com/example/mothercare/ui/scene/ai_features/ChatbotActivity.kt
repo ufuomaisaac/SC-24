@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.home
+package com.example.mothercare.ui.scene.ai_features
 
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +12,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
@@ -22,10 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.view.ViewCompat
-import androidx.core.view.ViewGroupCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 
 class ChatbotActivity : AppCompatActivity() {
