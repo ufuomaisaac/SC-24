@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -30,11 +28,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +41,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.theme.DaisyBC
 import com.example.mothercare.theme.Green2
 import com.example.mothercare.theme.LightGrey
@@ -53,10 +48,9 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Neutral1
 import com.example.mothercare.theme.Neutral2
 import com.example.mothercare.theme.NewChatColor
+import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
 import com.example.mothercare.ui.scene.survey.article.Articles
-import com.example.mothercare.ui.scene.survey.article.UserProfile
 import com.example.mothercare.ui.scene.main.MainActivity
-import com.example.mothercare.ui.scene.main.MainBottomDestinations
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 

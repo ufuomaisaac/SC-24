@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.scene.home.ChatbotActivity">
+    tools:context=".ui.scene.ai_features.ChatbotActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
