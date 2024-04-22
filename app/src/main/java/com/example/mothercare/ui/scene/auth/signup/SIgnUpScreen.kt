@@ -47,6 +47,7 @@ import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.PasswordState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.sign
 
 @Composable
 fun SignUpScreen(
@@ -92,7 +93,11 @@ fun SignUpContent(
     var isLoading by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     var context = LocalContext.current
+
+
+
     var authViewModel = hiltViewModel<AuthViewModel>()
+    var signInState = authViewModel.signUpState.collectAsState()
 
 
     Column(
@@ -142,7 +147,7 @@ fun SignUpContent(
                 Button(
                     onClick = {
 
-                        scope.launch {
+                       /* scope.launch {
                             authViewModel.signUp(emailState.text, passwordState.text)
                             isLoading = true
 
@@ -159,7 +164,33 @@ fun SignUpContent(
                                 isLoading = false
                                 Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
                             }
-                        }
+                        }*/
+
+                        if (emailState.isValid && passwordState.isValid) {
+                            isLoading = true
+
+                            Log.d("NEWAGE", "button has been clicked")
+
+                            //scope.launch {
+
+                                authViewModel.signUp(emailState.text, passwordState.text)
+
+                               // Log.d(TAG, "insideViewmodel ")
+
+                                if (signInState.value) {
+                                    onSignUpSubmitted()
+                                    Log.d("NEWAGE", "Sign In Has been confirm ")
+                                } else {
+                                    isLoading = false
+                                    Toast.makeText(
+                                        context,
+                                        "unable to sign up user",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    Log.d("NEWAGE", "User is unable to sign in")
+                                }
+                            }
+                       // }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = emailState.isValid &&

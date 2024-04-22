@@ -63,11 +63,13 @@ class  AuthViewModel @Inject constructor(
     fun signUp(email: String, password: String) = viewModelScope.launch {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {task ->
+
                 if(task.isSuccessful) {
-                    AuthState(signedUp = true)
+                   // AuthState(signedUp = true)
                         _signUpState.value = true
 
                 } else  {
+                  //  _signUpState.value = false
                     /*try{
                         task.exception
 
@@ -97,7 +99,7 @@ class  AuthViewModel @Inject constructor(
                             "Your email address or password is incorrect",
                             Toast.LENGTH_SHORT
                         ).show()*/
-                        _signUpState.value = false
+                       // _signUpState.value = false
                 }
             }
     }
