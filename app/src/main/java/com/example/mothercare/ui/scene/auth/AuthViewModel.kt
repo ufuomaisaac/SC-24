@@ -33,7 +33,6 @@ class  AuthViewModel @Inject constructor(
 
     private var _signInState = MutableStateFlow<Boolean>(false)
     private var _signUpState = MutableStateFlow<Boolean>(false)
-    private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
 
     val signInState: StateFlow<Boolean>
         get() = _signInState.asStateFlow()
@@ -41,8 +40,7 @@ class  AuthViewModel @Inject constructor(
     val signUpState: StateFlow<Boolean>
         get() = _signUpState.asStateFlow()
 
-    val responseState : StateFlow<SignInResponse>
-        get() = _responseState.asStateFlow()
+
 
     private val _uiState: MutableStateFlow<AuthUiState> =
         MutableStateFlow(AuthUiState.Initial)
@@ -67,15 +65,20 @@ class  AuthViewModel @Inject constructor(
   }*/
 
     fun signIn(email: String, password: String) = viewModelScope.launch {
+
+        _uiState.value = AuthUiState.Loading
+
         try {
+
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     _uiState.value = AuthUiState.Loading
-                    Log.d("NEWAGE", "Loading")
+                    Log.d("NEWAGE", _uiState.value.toString())
 
                     if(task.isSuccessful) {
                         _uiState.value = AuthUiState.Success
-                        Log.d("NEWAGE", "Success")
+                       // Log.d("NEWAGE", "Success")
+                        Log.d("NEWAGE", _uiState.value.toString())
                     }
                 }
         } catch (e : FirebaseAuthException) {

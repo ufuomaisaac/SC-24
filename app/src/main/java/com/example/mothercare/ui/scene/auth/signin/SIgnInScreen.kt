@@ -53,8 +53,13 @@ fun SignInScreen(
     onSignInSubmitted: (email: String, password: String) -> Unit,
     onForgotPasswordClicked: () -> Unit = {},
     onNavUp: () -> Unit,
-    modifier: Modifier
+    modifier: Modifier,
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
+
+
+     val uiState by authViewModel.uiState.collectAsState()
+
 
     Scaffold(
         topBar = {
@@ -75,14 +80,13 @@ fun SignInScreen(
                      Spacer(modifier = Modifier.height(16.dp))
                      SignInContent(
                          email = email,
-                         onSignInSubmitted = onSignInSubmitted
+                         onSignInSubmitted = onSignInSubmitted,
+                         onForgotPasswordClicked = onForgotPasswordClicked,
+                         uiState = uiState,
+                         authViewModel = authViewModel
+
                      )
                  }
-                 TextButton(
-                     modifier = Modifier,
-                     buttonText = "Forgot password?",
-                     onButtonClicked = {
-                     })
              }
              Spacer(modifier = Modifier.height(32.dp))
          }
@@ -93,7 +97,10 @@ fun SignInScreen(
 fun SignInContent(
     modifier: Modifier = Modifier,
     email: String,
-    onSignInSubmitted: (email: String, password: String) -> Unit
+    onSignInSubmitted: (email: String, password: String) -> Unit,
+    onForgotPasswordClicked: () -> Unit = {},
+    uiState: AuthUiState,
+    authViewModel: AuthViewModel
 ) {
 
     var TAG = "NEWAGE"
@@ -112,10 +119,9 @@ fun SignInContent(
         val passwordState = remember { PasswordState() }
         val scope = rememberCoroutineScope()
 
-        var authViewModel: AuthViewModel = hiltViewModel()
-        var state = authViewModel.signInState.collectAsState()
-
-        val uiState by authViewModel.uiState.collectAsState()
+        //var authViewModel: AuthViewModel = hiltViewModel()
+        //var state = authViewModel.signInState.collectAsState()
+        //val uiState by authViewModel.uiState.collectAsState()
 
 
 
@@ -156,13 +162,24 @@ fun SignInContent(
                     )
                 }
 
+                TextButton(
+                    modifier = Modifier,
+                    buttonText = "Forgot password?",
+                    onButtonClicked = {
+                    })
+
                 when (uiState) {
                     AuthUiState.Initial-> {
+                        //Screen remian the same
+
+                        Log.d("NEWAGE", uiState.toString())
 
                     }
                     AuthUiState.Loading -> {
+
+                        //progresss bar is displayed
                         Box(
-                            contentAlignment = Alignment.Center,
+                            contentAlignment = Alignment.TopCenter,
                             modifier = Modifier
                                 .padding(all = 8.dp)
                                 .align(Alignment.CenterHorizontally)
@@ -171,14 +188,16 @@ fun SignInContent(
                         }
                     }
 
+                    AuthUiState.Success -> { onSignInSubmitted(emailState.text.toString(), passwordState.text.toString()) }// The next screen is shown
+
                     is AuthUiState.Error -> {
+                        //A tpast bar is shown displaying the error
                         Toast.makeText(context, (uiState as AuthUiState.Error).errorMessage, Toast.LENGTH_SHORT ).show()
 
                         }
 
-                    AuthUiState.Success ->  {
-                        onSignInSubmitted
-                    }
+
+
 
                 }
             }
