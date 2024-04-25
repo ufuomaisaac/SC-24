@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -41,8 +40,6 @@ import com.example.mothercare.ui.scene.auth.state.AuthUiState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
-import io.grpc.android.BuildConfig
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.annotation.meta.When
 
@@ -81,8 +78,7 @@ fun SignInScreen(
                  TextButton(
                      modifier = Modifier,
                      buttonText = "Forgot password?",
-                     onButtonClicked = {
-                     })
+                     onButtonClicked = {})
              }
              Spacer(modifier = Modifier.height(32.dp))
          }
@@ -142,7 +138,33 @@ fun SignInContent(
                 Button(
                     onClick = {
                         if (emailState.isValid && passwordState.isValid) {
-                            authViewModel.signIn(emailState.text, passwordState.text)
+
+                          //  authViewModel.signIn(emailState.text, passwordState.text)
+
+                            isLoading = true
+
+                            Log.d("NEWAGE", "button has been clicked")
+
+                            scope.launch {
+
+                                authViewModel.signIn(emailState.text, passwordState.text)
+
+                                Log.d(TAG, "insideViewmodel ")
+
+                                if (state.value) {
+                                    onSignInSubmitted(emailState.text, passwordState.text)
+                                    Log.d("NEWAGE", "Sign In Has been confirm ")
+                                } else {
+                                    isLoading = false
+                                    Toast.makeText(
+                                        context,
+                                        "unable to sign in user",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    Log.d("NEWAGE", "User is unable to sign in")
+                                }
+                            }
+
                         }
                     },
                     modifier = Modifier
