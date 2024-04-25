@@ -1,28 +1,26 @@
-package com.example.mothercare.ui.scene.auth
+package com.example.mothercare.ui.scene.main
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.jetsurvey.survey.SurveyRoute
-import com.example.mothercare.ui.scene.auth.Destinations.MAIN_ROUTE
-import com.example.mothercare.ui.scene.auth.Destinations.SIGN_IN_ROUTE
-import com.example.mothercare.ui.scene.auth.Destinations.SIGN_UP_ROUTE
-import com.example.mothercare.ui.scene.auth.Destinations.SURVEY_ROUTE
+import com.example.mothercare.ui.scene.ai_features.MenuScreen
+import com.example.mothercare.ui.scene.main.Destinations.MAIN_ROUTE
+import com.example.mothercare.ui.scene.main.Destinations.SIGN_IN_ROUTE
+import com.example.mothercare.ui.scene.main.Destinations.SIGN_UP_ROUTE
+import com.example.mothercare.ui.scene.main.Destinations.SURVEY_ROUTE
 import com.example.mothercare.ui.scene.auth.signin.SignInScreen
 import com.example.mothercare.ui.scene.auth.signup.SignUpScreen
-import com.example.mothercare.ui.scene.main.MainActivity
-import com.example.mothercare.ui.scene.main.MainScreen
 
 object Destinations{
     const val SIGN_UP_ROUTE = "signup"
     const val SIGN_IN_ROUTE = "signin"
     const val SURVEY_ROUTE = "survey"
     const val MAIN_ROUTE = "main"
+
 }
 
 @Composable
@@ -38,7 +36,7 @@ fun OnEntryNavigatiion(
         composable(route = SIGN_UP_ROUTE) {
             SignUpScreen(
                 modifier = Modifier,
-                onSignUpSubmitted = {navController.navigate(route = SIGN_IN_ROUTE) },
+                onSignUpSubmitted = {navController.navigate(route = SIGN_IN_ROUTE)},
                 NavUp = { }
             )
         }
@@ -60,7 +58,9 @@ fun OnEntryNavigatiion(
 
 
         composable(route = MAIN_ROUTE) {
-            MainScreen(context = context)
+           // MainScreen(context = context)
+            MenuScreen()
         }
+
     }
 }

@@ -215,13 +215,8 @@ fun SignUpContent(
             if (isLoading) {
                 CircularProgressIndicator()
             }
-
         }
-
     }
-
-
-
 }
 
 @Preview

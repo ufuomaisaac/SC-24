@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,10 +36,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.auth.AuthViewModel
+import com.example.mothercare.ui.scene.auth.state.AuthUiState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
 import kotlinx.coroutines.launch
+import javax.annotation.meta.When
 
 
 @Composable
@@ -89,8 +94,8 @@ fun SignInContent(
 
     var TAG = "NEWAGE"
 
-        var isLoading by remember { mutableStateOf(false) }
-        
+    var isLoading by remember { mutableStateOf(false) }
+
     Column(modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -105,6 +110,8 @@ fun SignInContent(
 
         var authViewModel: AuthViewModel = hiltViewModel()
         var state = authViewModel.signInState.collectAsState()
+
+        val uiState by authViewModel.uiState.collectAsState()
 
 
 
@@ -131,6 +138,9 @@ fun SignInContent(
                 Button(
                     onClick = {
                         if (emailState.isValid && passwordState.isValid) {
+
+                          //  authViewModel.signIn(emailState.text, passwordState.text)
+
                             isLoading = true
 
                             Log.d("NEWAGE", "button has been clicked")
@@ -154,6 +164,7 @@ fun SignInContent(
                                     Log.d("NEWAGE", "User is unable to sign in")
                                 }
                             }
+
                         }
                     },
                     modifier = Modifier
@@ -166,10 +177,32 @@ fun SignInContent(
                         color = Color.Black
                     )
                 }
-            }
-            if (isLoading) {
-                //Spacer(modifier = Modifier.height(100.dp))
-                CircularProgressIndicator()
+
+                when (uiState) {
+                    AuthUiState.Initial-> {
+
+                    }
+                    AuthUiState.Loading -> {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .padding(all = 8.dp)
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    is AuthUiState.Error -> {
+                        Toast.makeText(context, (uiState as AuthUiState.Error).errorMessage, Toast.LENGTH_SHORT ).show()
+
+                        }
+
+                    AuthUiState.Success ->  {
+                        onSignInSubmitted
+                    }
+
+                }
             }
         }
     }
