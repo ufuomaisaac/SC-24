@@ -69,7 +69,7 @@ class  AuthViewModel @Inject constructor(
           }
   }
 
-    fun signIn(email: String, password: String) = viewModelScope.launch {
+    /*fun signIn(email: String, password: String) = viewModelScope.launch {
         try {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -85,7 +85,7 @@ class  AuthViewModel @Inject constructor(
             _uiState.value = AuthUiState.Error("Unknown error, try again...")
             Log.d("NEWAGE", "Error")
         }
-    }
+    }*/
 
 
     fun signUp(email: String, password: String) = viewModelScope.launch {

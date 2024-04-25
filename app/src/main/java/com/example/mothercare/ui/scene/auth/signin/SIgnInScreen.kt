@@ -178,7 +178,7 @@ fun SignInContent(
                     )
                 }
 
-                when (uiState) {
+                /*when (uiState) {
                     AuthUiState.Initial-> {
 
                     }
@@ -202,7 +202,7 @@ fun SignInContent(
                         onSignInSubmitted
                     }
 
-                }
+                }*/
             }
         }
     }
