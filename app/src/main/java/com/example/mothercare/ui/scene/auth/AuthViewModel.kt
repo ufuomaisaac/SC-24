@@ -33,7 +33,7 @@ class  AuthViewModel @Inject constructor(
 
     private var _signInState = MutableStateFlow<Boolean>(false)
     private var _signUpState = MutableStateFlow<Boolean>(false)
-    private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
+   // private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
 
     val signInState: StateFlow<Boolean>
         get() = _signInState.asStateFlow()
@@ -41,9 +41,9 @@ class  AuthViewModel @Inject constructor(
     val signUpState: StateFlow<Boolean>
         get() = _signUpState.asStateFlow()
 
-    val responseState : StateFlow<SignInResponse>
+ /*   val responseState : StateFlow<SignInResponse>
         get() = _responseState.asStateFlow()
-
+*/
     private val _uiState: MutableStateFlow<AuthUiState> =
         MutableStateFlow(AuthUiState.Initial)
     val uiState: StateFlow<AuthUiState> =

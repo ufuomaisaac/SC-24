@@ -22,8 +22,8 @@ class AppModule {
         Firebase.auth
 
 
-    @Provides
-    @Singleton
+    /*@Provides
+    //@Singleton
     fun summarizeGenerativeModel(): GenerativeModel =
     // Initialize a GenerativeModel with the `gemini-pro` AI model
         // for text generation
@@ -31,10 +31,10 @@ class AppModule {
         modelName = "gemini-1.0-pro",
         apiKey = BuildConfig.apikey,
         generationConfig = MyApp.config
-    )
+    )*/
 
     @Provides
-    @Singleton
+    //@Singleton
     fun chatGenerativeModel(): GenerativeModel =
         // Initialize a GenerativeModel with the `gemini-pro` AI model for chat
         GenerativeModel(
@@ -44,16 +44,16 @@ class AppModule {
         )
 
 
-    @Provides
-    @Singleton
-    fun PhotoReasoningGenerativeModel(): GenerativeModel =
+   // @Provides
+   // @Singleton
+   /* fun PhotoReasoningGenerativeModel(): GenerativeModel =
     // Initialize a GenerativeModel with the `gemini-pro-vision` AI model
         // for multimodal text generation
         GenerativeModel(
             modelName = "gemini-1.0-pro",
             apiKey = BuildConfig.apikey,
             generationConfig = MyApp.config
-        )
+        )*/
 
 
 }
