@@ -20,6 +20,7 @@ object Destinations{
     const val SIGN_IN_ROUTE = "signin"
     const val SURVEY_ROUTE = "survey"
     const val MAIN_ROUTE = "main"
+    const val AI_ROUTE = "gemini"
 
 }
 
@@ -61,6 +62,13 @@ fun OnEntryNavigatiion(
            // MainScreen(context = context)
             MenuScreen()
         }
+
+        composable("menu") {
+            MenuScreen(onItemClicked = { routeId ->
+                navController.navigate(routeId)
+            })
+        }
+
 
     }
 }

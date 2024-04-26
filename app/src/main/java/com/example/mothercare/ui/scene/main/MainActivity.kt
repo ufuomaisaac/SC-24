@@ -24,11 +24,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
+import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
 import com.example.mothercare.ui.scene.survey.article.ArticleItem
 import com.example.mothercare.ui.scene.survey.article.Articles
 import com.example.mothercare.ui.scene.survey.article.UserProfile
 import com.example.mothercare.ui.scene.home.CheckoutScreen
-import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
+//import com.example.mothercare.ui.scene.home.ChatbotActivity
 import com.example.mothercare.ui.scene.home.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -117,13 +118,11 @@ fun MainScreen(context: MainActivity ) {
 
             composable(Articles.CheckUpScreen.name) {
                CheckoutScreen(navController = navController)
-
             }
 
             composable(Articles.FirstArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
                     topic = "Balancing Nutrients", navController = navController )
-
             }
             composable(Articles.SecondArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab2_quick_yoga, firstTextIdRes = R.string.second_article,
@@ -133,18 +132,16 @@ fun MainScreen(context: MainActivity ) {
             composable(Articles.ThirdArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab6_pre_natal_yoga, firstTextIdRes = R.string.third_article,
                     topic = "Overcoming Pregnancy Depression", navController = navController )
-
             }
             composable(Articles.FourthArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
                     topic = "Exercise", navController = navController )
-
             }
             composable(Articles.FifthArticle.name) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
                     topic = "Exercise", navController = navController )
-
             }
+
         }
     }
 }
