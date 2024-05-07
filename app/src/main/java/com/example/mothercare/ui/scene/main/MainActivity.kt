@@ -141,7 +141,6 @@ fun MainScreen(context: MainActivity ) {
                 ArticleItem(imageIdRes = R.drawable.ab3_stretching, firstTextIdRes = R.string.first_article,
                     topic = "Exercise", navController = navController )
             }
-
         }
     }
 }
