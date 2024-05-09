@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.main
+package com.example.mothercare.ui.scene.home.main
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mothercare.ui.scene.ai_features.muitimodal
+package com.example.mothercare.ui.scene.chat.muitimodal
 
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel

@@ -37,11 +37,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.scene.ai_features.ChatbotActivity"
+            android:name=".ui.scene.chat.ChatbotActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ui.scene.main.MainActivity"
+            android:name=".ui.scene.home.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MotherCare">

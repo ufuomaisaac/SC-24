@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mothercare.ui.scene.ai_features.chat
+package com.example.mothercare.ui.scene.chat.message
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -35,8 +35,8 @@ class ChatViewModel @Inject constructor(
 ) : ViewModel() {
     private val chat = generativeModel.startChat(
         history = listOf(
-            content(role = "user") { text("Hello, I have 2 dogs in my house.") },
-            content(role = "model") { text("Great to meet you. What would you like to know?") }
+/*            content(role = "user") { text("Hello, I have 2 dogs in my house.") },
+            content(role = "model") { text("Great to meet you. What would you like to know?") }*/
         )
     )
 
@@ -65,7 +65,7 @@ class ChatViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                val response = chat.sendMessage(userMessage)
+                val response = chat.sendMessage(userMessage + "relating to women care to mitigate maternal mortality")
 
                 _uiState.value.replaceLastPendingMessage()
 

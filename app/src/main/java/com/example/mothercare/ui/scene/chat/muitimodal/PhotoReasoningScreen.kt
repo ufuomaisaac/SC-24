@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mothercare.ui.scene.ai_features.muitimodal
+package com.example.mothercare.ui.scene.chat.muitimodal
 
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -60,7 +60,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -68,7 +67,6 @@ import coil.request.SuccessResult
 import coil.size.Precision
 import com.example.mothercare.R
 import com.example.mothercare.util.UriSaver
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.launch
 

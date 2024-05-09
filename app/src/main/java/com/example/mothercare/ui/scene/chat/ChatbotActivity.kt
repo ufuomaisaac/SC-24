@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.ai_features
+package com.example.mothercare.ui.scene.chat
 
 import android.content.Intent
 import android.net.Uri

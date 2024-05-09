@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mothercare.ui.scene.ai_features.chat
+package com.example.mothercare.ui.scene.chat.message
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column

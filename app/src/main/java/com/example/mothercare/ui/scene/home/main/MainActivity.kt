@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.main
+package com.example.mothercare.ui.scene.home.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -24,7 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
-import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
+import com.example.mothercare.ui.scene.chat.ChatbotActivity
 import com.example.mothercare.ui.scene.survey.article.ArticleItem
 import com.example.mothercare.ui.scene.survey.article.Articles
 import com.example.mothercare.ui.scene.survey.article.UserProfile
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(context: MainActivity ) {
+fun MainScreen(context: MainActivity) {
     var navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var currentDestinations = navBackStackEntry?.destination

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mothercare.ui.scene.ai_features.muitimodal
+package com.example.mothercare.ui.scene.chat.muitimodal
 
 /**
  * A sealed hierarchy describing the state of the text generation.

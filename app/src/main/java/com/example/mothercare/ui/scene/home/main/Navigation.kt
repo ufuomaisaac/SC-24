@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.main
+package com.example.mothercare.ui.scene.home.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,13 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.jetsurvey.survey.SurveyRoute
-import com.example.mothercare.ui.scene.ai_features.MenuScreen
-import com.example.mothercare.ui.scene.main.Destinations.MAIN_ROUTE
-import com.example.mothercare.ui.scene.main.Destinations.SIGN_IN_ROUTE
-import com.example.mothercare.ui.scene.main.Destinations.SIGN_UP_ROUTE
-import com.example.mothercare.ui.scene.main.Destinations.SURVEY_ROUTE
+import com.example.mothercare.ui.scene.chat.message.ChatRoute
+import com.example.mothercare.ui.scene.home.main.Destinations.MAIN_ROUTE
+import com.example.mothercare.ui.scene.home.main.Destinations.SIGN_IN_ROUTE
+import com.example.mothercare.ui.scene.home.main.Destinations.SIGN_UP_ROUTE
+import com.example.mothercare.ui.scene.home.main.Destinations.SURVEY_ROUTE
 import com.example.mothercare.ui.scene.auth.signin.SignInScreen
 import com.example.mothercare.ui.scene.auth.signup.SignUpScreen
+import com.example.mothercare.ui.scene.home.main.Destinations.AI_ROUTE
 
 object Destinations{
     const val SIGN_UP_ROUTE = "signup"
@@ -53,22 +54,16 @@ fun OnEntryNavigatiion(
         composable(route = SURVEY_ROUTE) {
             SurveyRoute(
                 onSurveyComplete = { navController.navigate(route = MAIN_ROUTE)},
-                onNavUp ={ navController.navigateUp() } )
+                onNavUp ={ navController.navigate(route = MAIN_ROUTE) } )
         }
-
-
 
         composable(route = MAIN_ROUTE) {
            // MainScreen(context = context)
-            MenuScreen()
+            ChatRoute()
         }
 
-        composable("menu") {
-            MenuScreen(onItemClicked = { routeId ->
-                navController.navigate(routeId)
-            })
+        composable(route = AI_ROUTE) {
+            ChatRoute()
         }
-
-
     }
 }

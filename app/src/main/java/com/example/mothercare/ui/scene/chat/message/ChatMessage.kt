@@ -1,4 +1,4 @@
-package com.example.mothercare.ui.scene.ai_features.chat
+package com.example.mothercare.ui.scene.chat.message
 
 import java.util.UUID
 

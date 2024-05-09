@@ -48,9 +48,9 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Neutral1
 import com.example.mothercare.theme.Neutral2
 import com.example.mothercare.theme.NewChatColor
-import com.example.mothercare.ui.scene.ai_features.ChatbotActivity
+import com.example.mothercare.ui.scene.chat.ChatbotActivity
 import com.example.mothercare.ui.scene.survey.article.Articles
-import com.example.mothercare.ui.scene.main.MainActivity
+import com.example.mothercare.ui.scene.home.main.MainActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
