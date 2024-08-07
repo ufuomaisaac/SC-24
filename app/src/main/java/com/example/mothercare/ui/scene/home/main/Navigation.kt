@@ -58,7 +58,7 @@ fun OnEntryNavigatiion(
         }
 
         composable(route = MAIN_ROUTE) {
-           // MainScreen(context = context)
+
             ChatRoute()
         }
 
