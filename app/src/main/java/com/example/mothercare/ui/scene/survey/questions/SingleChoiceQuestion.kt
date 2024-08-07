@@ -113,14 +113,14 @@ fun RadioButtonWithImageRow(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
+          /*  Image(
                 painter = painterResource(id = imageResourceId),
                 contentDescription = null,
                 modifier = Modifier
                     .size(56.dp)
                     .clip(MaterialTheme.shapes.extraSmall)
                     .padding(start = 0.dp, end = 8.dp)
-            )
+            )*/
             Spacer(Modifier.width(8.dp))
 
             Text(text, Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)

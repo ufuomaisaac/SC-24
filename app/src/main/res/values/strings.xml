@@ -93,6 +93,22 @@
     <string name="bugchaos">Bug of Chaos</string>
     <string name="frag">Frag</string>
 
+
+    <!-- question 1-->
+    <string name="how_would_you_describe_your_overall_health">How would you describe your overall health?</string>
+    <string name="excellent">Excellent</string>
+    <string name="good">Good </string>
+    <string name="fair">Fair</string>
+    <string name="poor">Poor</string>
+    <string name="i_do_not_know">I do not know</string>-->
+
+    <!-- question 2 -->
+    <string name="do_you_have_excessive_severe_pain_or_excessive_bleeding_during_your_periods">Do you experience severe pain or excessive bleeding during your periods?</string>
+    <string name="always">Always</string>
+    <string name="often">Often</string>
+    <string name="sometimes">Sometimes</string>
+    <string name="never">Never</string>
+
     <!-- question 3  -->
     <string name="takeaway">When was the last time you ordered takeaway because you couldn\'t be bothered to cook?</string>
 

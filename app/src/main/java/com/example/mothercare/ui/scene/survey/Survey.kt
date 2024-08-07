@@ -16,15 +16,14 @@ fun FreeTimeQuestion(
     modifier: Modifier = Modifier,
 ) {
     MultipleChoiceQuestion(
-        titleResourceId = R.string.in_my_free_time,
+        titleResourceId = R.string.how_would_you_describe_your_overall_health,
         directionsResourceId = R.string.select_all,
         possibleAnswers = listOf(
-            R.string.read,
-            R.string.work_out,
-            R.string.draw,
-            R.string.play_games,
-            R.string.dance,
-            R.string.watch_movies,
+            R.string.excellent,
+            R.string.good,
+            R.string.fair,
+            R.string.poor,
+            R.string.i_do_not_know
         ),
         selectedAnswers = selectedAnswers,
         onOptionSelected = onOptionSelected,
@@ -39,10 +38,10 @@ fun SuperheroQuestion(
     modifier: Modifier = Modifier,
 ) {
     SingleChoiceQuestion(
-        titleResourceId = R.string.pick_superhero,
+        titleResourceId = R.string.do_you_have_excessive_severe_pain_or_excessive_bleeding_during_your_periods,
         directionsResourceId = R.string.select_one,
         possibleAnswers = listOf(
-            Superhero(R.string.spark, R.drawable.spark),
+            Superhero(R.string.always, R.drawable.spark),
             Superhero(R.string.lenz, R.drawable.lenz),
             Superhero(R.string.bugchaos, R.drawable.bug_of_chaos),
             Superhero(R.string.frag, R.drawable.frag),
