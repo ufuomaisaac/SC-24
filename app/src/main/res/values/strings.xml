@@ -114,6 +114,8 @@
 
     <!-- question 4-->
     <string name="selfies">How do you feel about selfies 🤳?</string>
+    <string name="how_old_are_you">How old are you?</string>
+    <string name="are_you_aware_of_the_risks_associated_with_pregnancy_and_childbirth">Are you aware of the risks associated with pregnancy and childbirth?</string>
 
     <!-- question 5-->
     <string name="selfie_skills">Show off your selfie skills!</string>
@@ -127,6 +129,15 @@
     <string name="strongly_dislike">Strongly\nDislike</string>
     <string name="strongly_like">Strongly\nLike</string>
     <string name="neutral">Neutral</string>
+    <string name="hundred">100</string>
+    <string name="Ten">10</string>
+    <string name="fifty">50</string>
+    <string name="yes">Yes</string>
+    <string name="no">no</string>
+    <string name="somewhat">SomeWhat</string>
+
+
+
 
 
 

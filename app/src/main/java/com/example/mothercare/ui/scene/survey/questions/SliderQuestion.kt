@@ -48,7 +48,7 @@ fun SliderQuestion(
     value: Float?,
     onValueChange: (Float) -> Unit,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
-    steps: Int = 10,
+    steps: Int = 3,
     @StringRes startTextResource: Int,
     @StringRes neutralTextResource: Int,
     @StringRes endTextResource: Int,

@@ -78,7 +78,7 @@ fun FeelingAboutSelfiesQuestion(
     onValueChange: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    SliderQuestion(
+    /*SliderQuestion(
         titleResourceId = R.string.selfies,
         value = value,
         onValueChange = onValueChange,
@@ -86,6 +86,18 @@ fun FeelingAboutSelfiesQuestion(
         neutralTextResource = R.string.neutral,
         endTextResource = R.string.strongly_like,
         modifier = modifier,
+    )*/
+
+    SliderQuestion(
+        titleResourceId = R.string.are_you_aware_of_the_risks_associated_with_pregnancy_and_childbirth,
+        value = value,
+        onValueChange = onValueChange,
+        startTextResource = R.string.no,
+        neutralTextResource = R.string.somewhat,
+        endTextResource = R.string.yes,
+        modifier = modifier,
     )
+
+
 }
 
