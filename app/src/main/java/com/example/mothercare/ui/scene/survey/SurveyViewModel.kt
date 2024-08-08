@@ -25,9 +25,12 @@ class SurveyViewModel @Inject constructor(
 
     // ----- Responses exposed as State -----
 
-    private val _freeTimeResponse = mutableStateListOf<Int>()
-    val freeTimeResponse: List<Int>
-        get() = _freeTimeResponse
+    //private val _freeTimeResponse = mutableStateListOf<Int>()
+   /* val freeTimeResponse: List<Int>
+        get() = _freeTimeResponse*/
+    private val _freeTimeResponse =  mutableStateOf<Superhero?>(null)
+    val freeTimeResponse: Superhero?
+        get() = _freeTimeResponse.value
 
     private val _superheroResponse = mutableStateOf<Superhero?>(null)
     val superheroResponse: Superhero?
@@ -80,12 +83,17 @@ class SurveyViewModel @Inject constructor(
         onSurveyComplete()
     }
 
-    fun onFreeTimeResponse(selected: Boolean, answer: Int) {
+   /* fun onFreeTimeResponse(selected: Boolean, answer: Int) {
         if (selected) {
             _freeTimeResponse.add(answer)
         } else {
             _freeTimeResponse.remove(answer)
         }
+        _isNextEnabled.value = getIsNextEnabled()
+    }*/
+
+    fun onFreeTimeResponse(superhero: Superhero) {
+        _freeTimeResponse.value = superhero
         _isNextEnabled.value = getIsNextEnabled()
     }
 
@@ -101,7 +109,8 @@ class SurveyViewModel @Inject constructor(
 
     private fun getIsNextEnabled(): Boolean {
         return when (questionOrder[questionIndex]) {
-            SurveyQuestion.FREE_TIME -> _freeTimeResponse.isNotEmpty()
+            //SurveyQuestion.FREE_TIME -> _freeTimeResponse.isNotEmpty()
+            SurveyQuestion.FREE_TIME -> _freeTimeResponse.value != null
             SurveyQuestion.SUPERHERO -> _superheroResponse.value != null
             SurveyQuestion.FEELING_ABOUT_SELFIES -> _feelingAboutSelfiesResponse.value != null
         }

@@ -11,11 +11,15 @@ import com.example.mothercare.ui.scene.survey.questions.Superhero
 
 @Composable
 fun FreeTimeQuestion(
-    selectedAnswers: List<Int>,
+   /* selectedAnswers: List<Int>,
     onOptionSelected: (selected: Boolean, answer: Int) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,*/
+   selectedAnswers: Superhero?,
+   onOptionSelected: (Superhero) -> Unit,
+   modifier: Modifier = Modifier,
+
 ) {
-    MultipleChoiceQuestion(
+    /*MultipleChoiceQuestion(
         titleResourceId = R.string.how_would_you_describe_your_overall_health,
         directionsResourceId = R.string.select_all,
         possibleAnswers = listOf(
@@ -26,6 +30,21 @@ fun FreeTimeQuestion(
             R.string.i_do_not_know
         ),
         selectedAnswers = selectedAnswers,
+        onOptionSelected = onOptionSelected,
+        modifier = modifier,
+    )*/
+
+    SingleChoiceQuestion(
+        titleResourceId = R.string.how_would_you_describe_your_overall_health,
+        directionsResourceId = R.string.select_one,
+        possibleAnswers = listOf(
+            Superhero(R.string.excellent, R.drawable.spark),
+            Superhero(R.string.good, R.drawable.lenz),
+            Superhero(R.string.fair, R.drawable.bug_of_chaos),
+            Superhero(R.string.poor, R.drawable.frag),
+            Superhero(R.string.i_do_not_know, R.drawable.spark),
+        ),
+        selectedAnswer = selectedAnswers,
         onOptionSelected = onOptionSelected,
         modifier = modifier,
     )
@@ -42,9 +61,9 @@ fun SuperheroQuestion(
         directionsResourceId = R.string.select_one,
         possibleAnswers = listOf(
             Superhero(R.string.always, R.drawable.spark),
-            Superhero(R.string.lenz, R.drawable.lenz),
-            Superhero(R.string.bugchaos, R.drawable.bug_of_chaos),
-            Superhero(R.string.frag, R.drawable.frag),
+            Superhero(R.string.often, R.drawable.lenz),
+            Superhero(R.string.sometimes, R.drawable.bug_of_chaos),
+            Superhero(R.string.never, R.drawable.frag),
         ),
         selectedAnswer = selectedAnswer,
         onOptionSelected = onOptionSelected,
