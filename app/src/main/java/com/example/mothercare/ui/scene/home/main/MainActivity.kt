@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.ui.scene.chat.ChatbotActivity
+import com.example.mothercare.ui.scene.chat.message.ChatRoute
 import com.example.mothercare.ui.scene.survey.article.ArticleItem
 import com.example.mothercare.ui.scene.survey.article.Articles
 import com.example.mothercare.ui.scene.survey.article.UserProfile
@@ -42,8 +43,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MotherCareTheme {
 
-
-
                 //MainScreen(this@MainActivity)
                 OnEntryNavigatiion(context = this@MainActivity)
             }
@@ -52,7 +51,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(context: MainActivity) {
+fun  MainScreen(context: MainActivity) {
     var navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var currentDestinations = navBackStackEntry?.destination
@@ -99,18 +98,20 @@ fun MainScreen(context: MainActivity) {
             modifier = Modifier.padding(padding)) {
 
             composable(MainBottomDestinations.Home.route) {
-               HomeScreen(
+              /* HomeScreen(
                    navController = navController,
-                   onNavigateToReward = { /*TODO*/ },
+                   onNavigateToReward = { *//*TODO*//* },
                    userName = "Ufuoma",
                    userCredit = "123",
                    context = context
-               )
+               )*/
+                ChatRoute()
             }
 
             composable(MainBottomDestinations.ChatBox.route) {
-                val intent = Intent(context, ChatbotActivity::class.java)
-                context.startActivity(intent)
+               /* val intent = Intent(context, ChatbotActivity::class.java)
+                context.startActivity(intent)*/
+                ChatRoute()
             }
             composable(MainBottomDestinations.Profile.route) {
                 UserProfile(navController = navController)

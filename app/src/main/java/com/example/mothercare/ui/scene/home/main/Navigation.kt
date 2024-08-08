@@ -14,6 +14,7 @@ import com.example.mothercare.ui.scene.home.main.Destinations.SIGN_UP_ROUTE
 import com.example.mothercare.ui.scene.home.main.Destinations.SURVEY_ROUTE
 import com.example.mothercare.ui.scene.auth.signin.SignInScreen
 import com.example.mothercare.ui.scene.auth.signup.SignUpScreen
+import com.example.mothercare.ui.scene.home.HomeScreen
 import com.example.mothercare.ui.scene.home.main.Destinations.AI_ROUTE
 
 object Destinations{
@@ -58,8 +59,17 @@ fun OnEntryNavigatiion(
         }
 
         composable(route = MAIN_ROUTE) {
+           /* HomeScreen(
+                context = context,
+                navController = navController,
+                onNavigateToReward = {navController.navigate(route = AI_ROUTE)},
+                modifier = Modifier,
+                userName = "Isaac",
+                userCredit = "234")*/
 
-            ChatRoute()
+            MainScreen(context = context)
+
+           // ChatRoute()
         }
 
         composable(route = AI_ROUTE) {

@@ -21,16 +21,6 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.slightlyDeemphasizedAlpha
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
 
-
-/**
- * A scrollable container  with the question's title, direction, and dynamic content.
- *
- * @param titleResourceId String resource to use for the question's title
- * @param modifier Modifier to apply to the entire wrapper
- * @param directionsResourceId String resource to use for the question's directions; the direction
- * UI will be omitted if null is passed
- * @param content Composable to display after the title and option directions
- */
 @Composable
 fun QuestionWrapper(
     @StringRes titleResourceId: Int,
