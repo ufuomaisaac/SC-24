@@ -48,7 +48,6 @@ import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.Neutral1
 import com.example.mothercare.theme.Neutral2
 import com.example.mothercare.theme.NewChatColor
-import com.example.mothercare.ui.scene.chat.ChatbotActivity
 import com.example.mothercare.ui.scene.survey.article.Articles
 import com.example.mothercare.ui.scene.home.main.MainActivity
 import com.google.firebase.Firebase
@@ -129,8 +128,8 @@ fun HomeScreen(
                 ActionButton(
                     onAIChatBuddyButtonClicked = {
                        // navController.navigate(route = Articles.OpenUrl.name)
-                        val intent =Intent(context, ChatbotActivity::class.java)
-                        context.startActivity(intent)
+                       // val intent =Intent(context, ChatbotActivity::class.java)
+                      //  context.startActivity(intent)
 
                                                  }
                     ,

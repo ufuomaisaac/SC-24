@@ -24,7 +24,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
-import com.example.mothercare.ui.scene.chat.ChatbotActivity
 import com.example.mothercare.ui.scene.chat.message.ChatRoute
 import com.example.mothercare.ui.scene.survey.article.ArticleItem
 import com.example.mothercare.ui.scene.survey.article.Articles

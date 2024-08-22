@@ -36,10 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.scene.chat.ChatbotActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".ui.scene.home.main.MainActivity"
             android:exported="true"
