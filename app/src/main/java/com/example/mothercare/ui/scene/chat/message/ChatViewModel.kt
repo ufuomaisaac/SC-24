@@ -40,15 +40,17 @@ class ChatViewModel @Inject constructor(
         )
     )
 
-    private val _uiState: MutableStateFlow<ChatUiState> =
+    private val _uiState: MutableStateFlow<ChatUiState> = MutableStateFlow(ChatUiState())
+
+  /*  private val _uiState: MutableStateFlow<ChatUiState> =
         MutableStateFlow(ChatUiState(chat.history.map { content ->
             // Map the initial messages
             ChatMessage(
-                text = content.parts.first().asTextOrNull() ?: "",
+                *//*text = content.parts.first().asTextOrNull() ?: "",
                 participant = if (content.role == "user") Participant.USER else Participant.MODEL,
-                isPending = false
+                isPending = false*//*
             )
-        }))
+        }))*/
     val uiState: StateFlow<ChatUiState> =
         _uiState.asStateFlow()
 
