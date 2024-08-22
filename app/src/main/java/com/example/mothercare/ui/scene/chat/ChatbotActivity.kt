@@ -32,7 +32,7 @@ class ChatbotActivity : AppCompatActivity() {
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background) {
                     //OpenUrlButton()
-                    WebViewPage(url = "https://women-care-chatbot.streamlit.app/")
+                   // WebViewPage(url = "https://women-care-chatbot.streamlit.app/")
 
                 }
                 //WebViewPage(url = "https://women-care-chatbot.streamlit.app/")
@@ -48,7 +48,7 @@ class ChatbotActivity : AppCompatActivity() {
     }
 }
 
-@Composable
+/*@Composable
 fun WebViewPage(url: String){
 
     AndroidView(factory ={
@@ -66,12 +66,12 @@ fun WebViewPage(url: String){
     }, update =  {
         it.loadUrl(url)
     })
-}
+}*/
 
 
-@Composable
+//@Composable
 
-fun OpenUrlButton() {
+/*fun OpenUrlButton() {
     val womenCareLink = "https://women-care-chatbot.streamlit.app/"
     val context = LocalContext.current
 
@@ -85,4 +85,4 @@ fun OpenUrlButton() {
         }
 
     }
-}
+}*/

@@ -78,14 +78,14 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Navigation
+    // Navigation
     val nav_version = "2.7.6"
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
-    //BottomNavigation and BottomNavigationItem
+    // BottomNavigation and BottomNavigationItem
     implementation("androidx.compose.material:material:1.5.4")
 
-    //icons
+    // Icons
     implementation("androidx.compose.material:material-icons-extended:1.5.3")
 
     // Firebase
@@ -102,11 +102,16 @@ dependencies {
     // SplashScreen
     implementation("androidx.core:core-splashscreen:1.0.0")
 
-    //coil
+    // coil
     implementation("io.coil-kt:coil-compose:2.6.0")
 
     // Google AI SDK for Android
     implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
 
+    // Emoji
+    val emoji2_version = "1.4.0"
+    implementation("androidx.emoji2:emoji2:$emoji2_version")
+    implementation("androidx.emoji2:emoji2-views:$emoji2_version")
+    implementation("androidx.emoji2:emoji2-views-helper:$emoji2_version")
 
 }
