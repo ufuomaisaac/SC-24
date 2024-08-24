@@ -20,12 +20,12 @@ sealed class AuthUiState {
     data object Loading: AuthUiState()
 
     /**
-     * Text has been generated
+     * success
      */
     data object Success: AuthUiState()
 
     /**
-     * There was an error generating text
+     * There was an error
      */
     data class Error(
         val errorMessage: String
