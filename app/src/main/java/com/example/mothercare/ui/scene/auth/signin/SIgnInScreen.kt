@@ -1,6 +1,7 @@
 package com.example.mothercare.ui.scene.auth.signin
 
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -40,6 +42,7 @@ import com.example.mothercare.ui.scene.auth.state.AuthUiState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.annotation.meta.When
 
@@ -150,19 +153,23 @@ fun SignInContent(
                                 authViewModel.signIn(emailState.text, passwordState.text)
 
                                 Log.d(TAG, "insideViewmodel ")
+                               scope.launch {
 
-                                if (state.value) {
-                                    onSignInSubmitted(emailState.text, passwordState.text)
-                                    Log.d("NEWAGE", "Sign In Has been confirm ")
-                                } else {
-                                    isLoading = false
-                                    Toast.makeText(
-                                        context,
-                                        "unable to sign in user",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Log.d("NEWAGE", "User is unable to sign in")
-                                }
+                                    delay(3000)
+
+                                    if (state.value) {
+                                        onSignInSubmitted(emailState.text, passwordState.text)
+                                        Log.d("NEWAGE", "Sign In Has been confirm ")
+                                    } else {
+                                        isLoading = false
+                                        Toast.makeText(
+                                            context,
+                                            "unable to sign in user",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        Log.d("NEWAGE", "User is unable to sign in")
+                                    }
+                               }
                             }
 
                         }

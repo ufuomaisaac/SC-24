@@ -41,6 +41,8 @@ class ChatViewModel @Inject constructor(
     )
 
     private val _uiState: MutableStateFlow<ChatUiState> = MutableStateFlow(ChatUiState())
+    val uiState: StateFlow<ChatUiState> =
+        _uiState.asStateFlow()
 
   /*  private val _uiState: MutableStateFlow<ChatUiState> =
         MutableStateFlow(ChatUiState(chat.history.map { content ->
@@ -51,9 +53,6 @@ class ChatViewModel @Inject constructor(
                 isPending = false*//*
             )
         }))*/
-    val uiState: StateFlow<ChatUiState> =
-        _uiState.asStateFlow()
-
 
     fun sendMessage(userMessage: String) {
         // Add a pending message

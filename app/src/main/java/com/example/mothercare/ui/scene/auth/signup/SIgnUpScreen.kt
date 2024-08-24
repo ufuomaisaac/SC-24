@@ -143,35 +143,12 @@ fun SignUpContent(
                 modifier = Modifier,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 Button(
                     onClick = {
-
-                       /* scope.launch {
-                            authViewModel.signUp(emailState.text, passwordState.text)
-                            isLoading = true
-
-                            delay(4000)
-
-
-                            if (authViewModel.signUpState.value) {
-                                isLoading = false
-                                Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
-                                Toast.makeText(context, "Success", Toast.LENGTH_SHORT )
-                                onSignUpSubmitted()
-
-                            } else {
-                                isLoading = false
-                                Log.d("MYNEWAPP", authViewModel.signUpState.value.toString())
-                            }
-                        }*/
-
                         if (emailState.isValid && passwordState.isValid) {
                             isLoading = true
 
                             Log.d("NEWAGE", "button has been clicked")
-
-                            //scope.launch {
 
                                 authViewModel.signUp(emailState.text, passwordState.text)
 
@@ -190,7 +167,6 @@ fun SignUpContent(
                                     Log.d("NEWAGE", "User is unable to sign in")
                                 }
                             }
-                       // }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = emailState.isValid &&
