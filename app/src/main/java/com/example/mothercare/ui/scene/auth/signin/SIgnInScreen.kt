@@ -1,7 +1,6 @@
 package com.example.mothercare.ui.scene.auth.signin
 
 import android.util.Log
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,13 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,14 +31,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.theme.MotherCareTheme
-import com.example.mothercare.ui.scene.auth.AuthViewModel
-import com.example.mothercare.ui.scene.auth.state.AuthUiState
+import com.example.mothercare.ui.scene.auth.viewmodel.AuthViewModel
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.EmailStateSaver
 import com.example.mothercare.ui.scene.auth.state.PasswordState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.annotation.meta.When
 
 
 @Composable

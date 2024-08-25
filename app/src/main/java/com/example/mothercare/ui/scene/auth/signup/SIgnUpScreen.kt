@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.R
 import com.example.mothercare.theme.MotherCareTheme
 import com.example.mothercare.theme.stronglyDeemphasizedAlpha
-import com.example.mothercare.ui.scene.auth.AuthViewModel
+import com.example.mothercare.ui.scene.auth.viewmodel.AuthViewModel
 
 import com.example.mothercare.ui.scene.auth.signin.Email
 import com.example.mothercare.ui.scene.auth.signin.Password
@@ -45,9 +44,6 @@ import com.example.mothercare.ui.scene.auth.signin.TextButton
 import com.example.mothercare.ui.scene.auth.state.ConfirmPasswordState
 import com.example.mothercare.ui.scene.auth.state.EmailState
 import com.example.mothercare.ui.scene.auth.state.PasswordState
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 @Composable
 fun SignUpScreen(
