@@ -44,6 +44,8 @@ class ChatViewModel @Inject constructor(
     val uiState: StateFlow<ChatUiState> =
         _uiState.asStateFlow()
 
+    //This code is for dummy data, it shows how the user's messsage and model response will appear
+    //in the chat and since that is not longer needed, it has been commented out
   /*  private val _uiState: MutableStateFlow<ChatUiState> =
         MutableStateFlow(ChatUiState(chat.history.map { content ->
             // Map the initial messages

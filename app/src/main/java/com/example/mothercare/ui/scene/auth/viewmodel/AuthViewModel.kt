@@ -34,10 +34,15 @@ class  AuthViewModel @Inject constructor(
     val uiState: StateFlow<AuthUiState> =
         _uiState.asStateFlow()
 
-   private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
+    private var _authUiState = MutableStateFlow<AuthUiState>(AuthUiState.Initial)
+    val authUiState : StateFlow<AuthUiState>
+        //  = _responseState
+        get() = _authUiState.asStateFlow()
+
+    /* private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
     val responseState : StateFlow<SignInResponse>
         //  = _responseState
-        get() = _responseState.asStateFlow()
+        get() = _responseState.asStateFlow()*/
 
 
   fun signIn(email: String, password: String) = viewModelScope.launch() {
