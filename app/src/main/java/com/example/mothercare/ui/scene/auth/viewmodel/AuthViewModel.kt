@@ -1,26 +1,12 @@
-package com.example.mothercare.ui.scene.auth
+package com.example.mothercare.ui.scene.auth.viewmodel
 
 import android.util.Log
-import android.widget.Toast
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mothercare.ui.scene.auth.state.AuthState
 import com.example.mothercare.ui.scene.auth.state.AuthUiState
+import com.example.mothercare.ui.scene.auth.state.SignInResponse
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthActionCodeException
-import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -48,10 +34,15 @@ class  AuthViewModel @Inject constructor(
     val uiState: StateFlow<AuthUiState> =
         _uiState.asStateFlow()
 
-   private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
+    private var _authUiState = MutableStateFlow<AuthUiState>(AuthUiState.Initial)
+    val authUiState : StateFlow<AuthUiState>
+        //  = _responseState
+        get() = _authUiState.asStateFlow()
+
+    /* private var _responseState = MutableStateFlow<SignInResponse>(SignInResponse.ERROR)
     val responseState : StateFlow<SignInResponse>
         //  = _responseState
-        get() = _responseState.asStateFlow()
+        get() = _responseState.asStateFlow()*/
 
 
   fun signIn(email: String, password: String) = viewModelScope.launch() {

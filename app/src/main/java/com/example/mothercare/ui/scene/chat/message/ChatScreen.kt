@@ -1,21 +1,7 @@
-/*
- * Copyright 2023 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.example.mothercare.ui.scene.chat.message
 
+import android.os.Message
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -52,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mothercare.R
@@ -109,21 +96,25 @@ fun ChatList(
 fun ChatBubbleItem(
     chatMessage: ChatMessage
 ) {
+    //check if thr mesasage is from the user or model
     val isModelMessage = chatMessage.participant == Participant.MODEL ||
             chatMessage.participant == Participant.ERROR
 
+    //Enum class was used here because Participants are exhaustive
+    //backgraund color of the participant's message
     val backgroundColor = when (chatMessage.participant) {
         Participant.MODEL -> MaterialTheme.colorScheme.primaryContainer
         Participant.USER -> MaterialTheme.colorScheme.tertiaryContainer
         Participant.ERROR -> MaterialTheme.colorScheme.errorContainer
     }
-
+    //Shape of the participant's message
     val bubbleShape = if (isModelMessage) {
         RoundedCornerShape(4.dp, 20.dp, 20.dp, 20.dp)
     } else {
         RoundedCornerShape(20.dp, 4.dp, 20.dp, 20.dp)
     }
 
+    //alignment of the participant's message
     val horizontalAlignment = if (isModelMessage) {
         Alignment.Start
     } else {
@@ -141,7 +132,9 @@ fun ChatBubbleItem(
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.padding(bottom = 4.dp)
         )
+
         Row {
+            //show a progress indicator to show that the message is being sent to the model
             if (chatMessage.isPending) {
                 CircularProgressIndicator(
                     modifier = Modifier
@@ -149,6 +142,9 @@ fun ChatBubbleItem(
                         .padding(all = 8.dp)
                 )
             }
+
+            //This is the adjust the size of the text bubble based on the text lenght
+            //The min width and max width is specified in the Card composable
             BoxWithConstraints {
                 Card(
                     colors = CardDefaults.cardColors(containerColor = backgroundColor),
@@ -215,4 +211,12 @@ fun MessageInput(
             }
         }
     }
+}
+
+
+@Preview
+@Composable
+fun ChatBubbleItemPreview() {
+    //MessageInput(onSendMessage = {})
+    //ChatBubbleItem(chatMessage = ChatMessage(text = "Hello", participant = Participant.MODEL))
 }
